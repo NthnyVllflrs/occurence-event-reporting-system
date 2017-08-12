@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="padding-top: 50px">
     <h1>Hello</h1>
     <button @click="logoutUser">Log Out</button>
   </div>
@@ -15,12 +15,12 @@
     },
     methods: {
       logoutUser(){
-//        firebase.auth().signOut().then(() => {
-//          console.log('successful')
-//          this.$router.push('/')
-//        }).catch(err => {
-//          console.log(err)
-//        })
+        firebase.auth().signOut().then(() => {
+          console.log('successful')
+          this.$router.push('/')
+        }).catch(err => {
+          console.log(err)
+        })
       }
     }
   }
