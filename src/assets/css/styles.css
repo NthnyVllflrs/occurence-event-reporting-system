@@ -71,3 +71,8 @@
 .column .icon .fa{
   color: #00d1b2;
 }
+
+.content .content-image{
+  width: 75%;
+  height: 20px;
+}
