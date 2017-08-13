@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Vuex from 'vuex'
 import App from './App.vue'
 import * as firebase from 'firebase'
 
 Vue.use(VueRouter)
 
-import {router} from "./config/routes"
 import {store} from "./config/store"
+import {router} from "./config/routes"
 
 new Vue({
   el: '#app',

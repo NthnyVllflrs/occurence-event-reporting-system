@@ -10,8 +10,9 @@
         </div>
       </div>
       <div :class="{'is-active': navBarToggle}" class="navbar-end navbar-menu">
-        <a class="navbar-item" @click="loginDisplay = true">LOGIN</a>
-        <a class="has-text-primary navbar-item" @click="signupDisplay = true">SIGN UP</a>
+        <a class="navbar-item" @click="loginDisplay = true" v-if="!isSignedIn">LOGIN</a>
+        <a class="has-text-primary navbar-item" @click="signupDisplay = true" v-if="!isSignedIn">SIGN UP</a>
+        <a class="has-text-danger navbar-item" @click="logOutUser" v-if="isSignedIn">LOG OUT</a>
       </div>
     </div>
 
@@ -24,10 +25,6 @@
           <p class="modal-card-title">SIGNUP</p>
         </header>
         <section class="modal-card-body">
-          <!-- Content ... -->
-          <!--<article class="message " id="message-type">-->
-          <!--<div class="message-body" id="message-content"></div>-->
-          <!--</article>-->
           <div class="field">
             <div class="control has-icons-left">
               <input class="input" type="email" placeholder="Email" v-model="signup.email">
@@ -124,14 +121,30 @@
         } else {
           toastr.error('Passwords do not match.')
         }
+        this.signup.email = ''
+        this.signup.password = ''
+        this.signup.password2 = ''
+        this.signupDisplay = false
+        this.navBarToggle = false
       },
       logInUser(){
         this.$store.dispatch('logInUser', {email: this.login.email, password: this.login.password})
+        this.login.email = ''
+        this.login.password = ''
+        this.loginDisplay = false
+        this.navBarToggle = false
+      },
+      logOutUser(){
+        this.$store.dispatch('logoutUser')
+        this.navBarToggle = false
       }
     },
     computed: {
       verifyPassword(){
         return this.signup.password === this.signup.password2
+      },
+      isSignedIn(){
+        return !!this.$store.getters.currentUser
       }
     }
   }
