@@ -10,7 +10,7 @@
               <span class="icon is-small">
                 <i class="fa fa-plus"></i>
               </span>
-              <span>Add Occurrence</span>
+              <span>Add Occurrences</span>
             </a>
           </div>
         </div>
