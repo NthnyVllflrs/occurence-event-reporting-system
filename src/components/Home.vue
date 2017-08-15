@@ -1,154 +1,82 @@
 <template>
   <div style="padding-top: 72px">
-    <div class="box">
-      <div class="field">
-        <a class="button is-success is-small">
+    <div class="container container-width">
+      <div class="box">
+        <!-- Box Header -->
+        <div class="columns">
+          <div class="column">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-48x48">
+                  <img src="https://pickaface.net/gallery/avatar/katsukidjess52b86e6c514c7.png" alt="Image">
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-4">Random Guy</p>
+                <p class="subtitle is-6">2 mins</p>
+              </div>
+              <div class="media-right">
+                <button class="delete is-small"></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End of Box Header -->
+
+        <!-- Box Image -->
+        <div class="columns">
+          <div class="column">
+            <div class="image is-2by1">
+              <img src="http://www.yearbooklove.com/wp-content/uploads/2015/05/1st_academics_3817991-640x320.jpg">
+            </div>
+          </div>
+        </div>
+        <!-- End of Box Image -->
+
+        
+      <div class="columns">
+        <div class="column is-on-third">
           <span class="icon is-small">
-            <i class="fa fa-sort"></i>
+            <i class="fa fa-info"></i>
           </span>
-          <span>Trending</span>
-        </a>
-        <a class="button is-success is-small">
+          <span>WMSU Palaro Rave Party 2k17</span>
+        </div>
+        <div class="column">
           <span class="icon is-small">
-            <i class="fa fa-plus"></i>
+            <i class="fa fa-map-marker"></i>
           </span>
-          <span>Add Occurence</span>
-        </a>
+          <span>WMSU Open Field</span>
+        </div>
+        <div class="column">
+          <span class="icon is-small">
+            <i class="fa fa-th-list"></i>
+          </span>
+          <span>Party</span>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <a class="button is-primary is-inverted">
+            <span class="icon">
+              <i class="fa fa-check"></i>
+            </span>
+          </a>
+          <a class="button is-primary is-inverted">
+            <span class="icon">
+              <i class="fa fa-users"></i>
+            </span>
+          </a>
+          <a class="button is-primary is-inverted">
+            <span class="icon">
+              <i class="fa fa-bookmark"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+        
       </div>
     </div>
-
-    <div class="box">
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-            <img src="https://pbs.twimg.com/profile_images/1634021833/50258_211053130451_5559002_n_400x400.jpg">
-          </p>
-        </figure>
-
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>Random Guy</strong>
-              <br>
-              <small>31m ago</small>
-              <div class="image">
-                <img src="https://adobochroniclesdotcom.files.wordpress.com/2016/08/image4.png?w=474" style="height:400px;">
-              </div>
-            </p>
-            <p>
-              <div class="field">
-                <div class="is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-info"></i>
-                  </span>
-                  <span>Constitutional Convention</span>
-                </div>
-                <div class="is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-map-marker"></i>
-                  </span>
-                  <span>Malacanang Palace</span>
-                </div>
-                <div class="is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-th-list"></i>
-                  </span>
-                  <span>Convention</span>
-                </div>
-              </div>
-            </p>
-          </div>
-
-          <nav class="level is-mobile">
-            <div class="level-left">
-              <div class="field">
-                <a class="button is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-check"></i>
-                  </span>
-                  <span>Verify</span>
-                </a>
-                <a class="button is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-users"></i>
-                  </span>
-                  <span>Attend</span>
-                </a>
-              </div>
-            </div>
-          </nav>
-        </div>
-
-        <div class="media-right">
-          <button class="delete"></button>
-        </div>
-      </article>
-    </div>
-
-
-    <div class="box">
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-            <img src="https://pbs.twimg.com/profile_images/1634021833/50258_211053130451_5559002_n_400x400.jpg">
-          </p>
-        </figure>
-
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>Random Guy</strong>
-              <br>
-              <small>51m ago</small>
-              <div class="image">
-                <img src="http://static.nautil.us/4130_c929f2210333206f417e3862f431776d.jpg" style="height:400px;">
-              </div>
-            </p>
-            <p>
-              <div class="field">
-                <div class="is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-info"></i>
-                  </span>
-                  <span>Goodbye Cruel World!</span>
-                </div>
-                <div class="is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-map-marker"></i>
-                  </span>
-                  <span>Earth, Solar System, Milky Way</span>
-                </div>
-                <div class="is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-th-list"></i>
-                  </span>
-                  <span>Apocalypse</span>
-                </div>
-              </div>
-            </p>
-          </div>
-
-          <nav class="level is-mobile">
-            <div class="level-left">
-              <div class="field">
-                <a class="button is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-check"></i>
-                  </span>
-                  <span>Verify</span>
-                </a>
-              </div>
-            </div>
-          </nav>
-        </div>
-        
-        <div class="media-right">
-          <button class="delete"></button>
-        </div>
-
-      </article>
-    </div>
-
   </div>
 </template>
 

@@ -76,3 +76,15 @@
   width: 75%;
   height: 20px;
 }
+
+.temp{
+  float: left;
+}
+
+.timeline-image{
+  height: 100px;
+}
+
+.container-width{
+  width: 60%;
+}
