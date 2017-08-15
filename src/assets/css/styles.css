@@ -56,22 +56,6 @@
   padding: 50px 12px;
 }
 
-.column{
-  display: inline-block;
-  text-align: center;
-}
-
-.column .icon{
-  border: 2px solid #00d1b2;
-  border-radius: 50%;
-  padding: 40px;
-  margin-bottom: 10px;
-}
-
-.column .icon .fa{
-  color: #00d1b2;
-}
-
 .content .content-image{
   width: 75%;
   height: 20px;

@@ -63,3 +63,21 @@
     }
   }
 </script>
+
+<style scoped>
+  .column{
+    display: inline-block;
+    text-align: center;
+  }
+
+  .column .icon{
+    border: 2px solid #00d1b2;
+    border-radius: 50%;
+    padding: 40px;
+    margin-bottom: 10px;
+  }
+
+  .column .icon .fa{
+    color: #00d1b2;
+  }
+</style>
