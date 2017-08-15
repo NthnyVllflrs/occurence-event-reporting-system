@@ -24,6 +24,7 @@
             <img src="https://pbs.twimg.com/profile_images/1634021833/50258_211053130451_5559002_n_400x400.jpg">
           </p>
         </figure>
+
         <div class="media-content">
           <div class="content">
             <p>
@@ -57,6 +58,7 @@
               </div>
             </p>
           </div>
+
           <nav class="level is-mobile">
             <div class="level-left">
               <div class="field">
@@ -76,11 +78,13 @@
             </div>
           </nav>
         </div>
+
         <div class="media-right">
           <button class="delete"></button>
         </div>
       </article>
     </div>
+
 
     <div class="box">
       <article class="media">
@@ -89,65 +93,7 @@
             <img src="https://pbs.twimg.com/profile_images/1634021833/50258_211053130451_5559002_n_400x400.jpg">
           </p>
         </figure>
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>Random Guy</strong>
-              <br>
-              <small>41m ago</small>
-              <div class="image">
-                <img src="http://cbsminnesota.files.wordpress.com/2012/10/ortonville-hotel-fire-newspaper-photo-1.jpg" style="height:400px;">
-              </div>
-            </p>
-            <p>
-              <div class="field">
-                <div class="is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-info"></i>
-                  </span>
-                  <span>My Freakin' House Is On Fire!</span>
-                </div>
-                <div class="is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-map-marker"></i>
-                  </span>
-                  <span>Vitali, Zamboanga City</span>
-                </div>
-                <div class="is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-th-list"></i>
-                  </span>
-                  <span>Fire</span>
-                </div>
-              </div>
-            </p>
-          </div>
-          <nav class="level is-mobile">
-            <div class="level-left">
-              <div class="field">
-                <a class="button is-success is-small">
-                  <span class="icon is-small">
-                    <i class="fa fa-check"></i>
-                  </span>
-                  <span>Verify</span>
-                </a>
-              </div>
-            </div>
-          </nav>
-        </div>
-        <div class="media-right">
-          <button class="delete"></button>
-        </div>
-      </article>
-    </div>
 
-    <div class="box">
-      <article class="media">
-        <figure class="media-left">
-          <p class="image is-64x64">
-            <img src="https://pbs.twimg.com/profile_images/1634021833/50258_211053130451_5559002_n_400x400.jpg">
-          </p>
-        </figure>
         <div class="media-content">
           <div class="content">
             <p>
@@ -181,6 +127,7 @@
               </div>
             </p>
           </div>
+
           <nav class="level is-mobile">
             <div class="level-left">
               <div class="field">
@@ -194,11 +141,14 @@
             </div>
           </nav>
         </div>
+        
         <div class="media-right">
           <button class="delete"></button>
         </div>
+
       </article>
     </div>
+
   </div>
 </template>
 
