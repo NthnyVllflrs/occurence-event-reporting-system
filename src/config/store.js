@@ -24,7 +24,10 @@ export const store = new Vuex.Store({
           let newUser = {
             id: user.uid
           }
-          toastr.success('Success!', 'You can now login.')
+          toastr.success('Success!', 'You are now logged in.')
+          firebase.database().ref(`users/${user.uid}`).set({
+            email: user.email
+          })
           commit('setUser', newUser)
           router.push('/home')
         }
