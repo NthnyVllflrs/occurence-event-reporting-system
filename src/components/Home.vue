@@ -6,11 +6,11 @@
           <div class="level-left">
           </div>
           <div class="level-right">
-            <a class="button is-small is-primary">
+            <a class="button is-small is-primary" href="/home/AddOccurrence">
               <span class="icon is-small">
                 <i class="fa fa-plus"></i>
               </span>
-              <span>Add Occurrences</span>
+              <span>Add Occurrence</span>
             </a>
           </div>
         </div>
@@ -26,7 +26,7 @@
                 </figure>
               </div>
               <div class="media-content">
-                <p class="title is-5">Random Guy</p>
+                <p class="title is-5">Nthny Vllflrs</p>
                 <p class="subtitle is-7">2 mins</p>
               </div>
               <div class="media-right">
@@ -46,31 +46,68 @@
           </div>
         </div>
         <!-- End of Box Image -->
-
-        
+      
       <div class="columns">
-        <div class="column is-on-third">
+        <div class="column">
+          <span class="icon is-small">
+            <i class="fa fa-info"></i>
+          </span>
           <span>WMSU Palaro Rave Party 2k17</span>
         </div>
+      </div>
+      <div class="columns">
         <div class="column">
+          <span class="icon is-small">
+            <i class="fa fa-map-marker"></i>
+          </span>
           <span>WMSU Open Field</span>
         </div>
+      </div>
+      <div class="columns">
         <div class="column">
-          <span>Rave Party</span>
+          <span class="icon is-small">
+            <i class="fa fa-th-list"></i>
+          </span>
+          <span>Party</span>
         </div>
       </div>
 
-      <div class="level">
-        <div class="level-left">
-          <a class="level-item">
-            <span class="icon"><i class="fa fa-check"></i></span>
+      <div class="columns">
+        <div class="column">
+        <!--
+          <a class="button is-primary is-inverted">
+            <span class="icon">
+              <i class="fa fa-check"></i>
+            </span>
           </a>
-          <a class="level-item">
-            <span class="icon"><i class="fa fa-users"></i></span>
+          <a class="button is-primary is-inverted">
+            <span class="icon">
+              <i class="fa fa-users"></i>
+            </span>
           </a>
-          <a class="level-item">
-            <span class="icon"><i class="fa fa-bookmark"></i></span>
+          <a class="button is-primary is-inverted">
+            <span class="icon">
+              <i class="fa fa-bookmark"></i>
+            </span>
           </a>
+          -->
+          <p class="field">
+            <a class="button is-primary is-inverted">
+              <span class="icon">
+                <i class="fa fa-check"></i>
+              </span>
+            </a>
+            <a class="button is-primary is-inverted">
+              <span class="icon">
+                <i class="fa fa-users"></i>
+              </span>
+            </a>
+            <a class="button is-primary is-inverted">
+              <span class="icon">
+                <i class="fa fa-bookmark"></i>
+              </span>
+            </a>
+          </p>
         </div>
       </div>
         

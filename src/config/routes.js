@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router'
 import LandingPage from '../components/LandingPage.vue'
 import Home from '../components/Home.vue'
+import AddOccurrence from '../components/AddOccurrence.vue'
 import toastr from 'toastr'
 
 import {store} from "./store"
@@ -14,6 +15,17 @@ const routes = [
         next()
       } else {
         next('/home')
+      }
+    }
+  },
+  {
+    path: '/home/AddOccurrence',
+    component: AddOccurrence,
+    beforeEnter: (to, from, next) => {
+      if(!store.getters.currentUser){
+        next()
+      } else {
+        next()
       }
     }
   },
