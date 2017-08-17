@@ -23,7 +23,8 @@ const routes = [
     component: AddOccurrence,
     beforeEnter: (to, from, next) => {
       if(!store.getters.currentUser){
-        next()
+        toastr.error('You are not yet logged in')
+        next('/')
       } else {
         next()
       }

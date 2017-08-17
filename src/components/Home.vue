@@ -130,6 +130,13 @@
   }
 </script>
 
-<style>
+<style scoped>
+  .timeline{
+    width: 45%;
+  }
 
+  .timeline-image{
+    width: 100%;
+    height: 275px;
+  }
 </style>
