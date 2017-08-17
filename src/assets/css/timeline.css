@@ -1,0 +1,93 @@
+.wrapper{
+  width: 60%;
+  margin: 0 auto;
+}
+
+.post-box{
+  margin-bottom: 20px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.16), 0 1px 2px rgba(0,0,0,0.23);
+}
+
+.post-head{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.post-box .post-head img{
+  width: 50px;
+  height: 50px;
+  background-color: coral;
+  border: 1px solid lightgray;
+  border-radius: 50%;
+}
+
+.post-user{
+  padding: 0px 20px;
+}
+
+.post-body{
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.post-box .post-body img{
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+.post-box .post-body img:hover{
+  transform: scale(1.1);
+}
+
+.post-foot{
+  margin-top: 20px;
+}
+
+.post-foot .details{
+
+}
+
+.post-foot .details div{
+  margin: 5px 0px;
+}
+
+.post-foot .details div i{
+  color: #00d1b2;
+}
+
+.control{
+  display: flex;
+}
+
+.control .buttons{
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.control .buttons:hover i{
+  color: white;
+  background-color: #00d1b2;
+}
+
+.control .buttons i{
+  color: #00d1b2;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 100ms ease-in-out;
+}
+
+/* premade for is active button */
+.control .buttons i.btn-is-active{
+  color: white;
+  background-color: #00d1b2;
+}
+
+@media (max-width: 768px){
+  .wrapper{
+    width: 100%;
+  }
+}
