@@ -1,0 +1,11 @@
+Push to the site
+git add .
+git commit -m "to be checked"
+git push origin anthony 
+
+Merge Dev into Anthony
+git checkout anthony
+git merge dev
+git push origin anthony
+
+git clone https://github.com/eyedeceiver03/occurence-event-reporting-system.git
