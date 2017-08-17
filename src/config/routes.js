@@ -19,7 +19,7 @@ const routes = [
     }
   },
   {
-    path: '/home/AddOccurrence',
+    path: '/home/add',
     component: AddOccurrence,
     beforeEnter: (to, from, next) => {
       if(!store.getters.currentUser){
