@@ -12,7 +12,25 @@
       <div :class="{'is-active': navBarToggle}" class="navbar-end navbar-menu">
         <a class="navbar-item" @click="loginDisplay = true" v-if="!isSignedIn">LOGIN</a>
         <a class="has-text-primary navbar-item" @click="signupDisplay = true" v-if="!isSignedIn">SIGN UP</a>
-        <a class="has-text-danger navbar-item" @click="logOutUser" v-if="isSignedIn">LOG OUT</a>
+        <router-link class="navbar-item" v-if="isSignedIn" to="/home">
+          <i class="fa fa-home" aria-hidden="true"></i>
+        </router-link>
+        <router-link class="navbar-item" v-if="isSignedIn" to="/home">
+          <i class="fa fa-map-o" aria-hidden="true"></i>
+        </router-link>
+        <router-link class="navbar-item" v-if="isSignedIn" to="/home/add">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </router-link>
+        <div :class="{'is-active': dropdownToggle}" class="navbar-item has-dropdown" @click="dropdownToggle = !dropdownToggle" v-if="isSignedIn">
+          <a class="navbar-link"></a>
+          <div class="navbar-dropdown is-right">
+            <div class="navbar-item">
+              John Doe
+            </div>
+            <hr class="navbar-divider">
+            <a class="has-text-danger navbar-item" @click="logOutUser">LOG OUT</a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -103,6 +121,7 @@
         loginDisplay: false,
         signupDisplay: false,
         navBarToggle: false,
+        dropdownToggle: false,
         signup: {
           email: '',
           password: '',
@@ -149,3 +168,9 @@
     }
   }
 </script>
+
+<style>
+  .navbar-menu a.navbar-item i{
+    color: #00d1b2;
+  }
+</style>
