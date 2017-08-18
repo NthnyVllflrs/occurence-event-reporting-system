@@ -1,12 +1,12 @@
 <template>
   <div style="padding-top: 72px">
     <div class="wrapper">
-      <div class="post-box">
+      <div class="post-box" v-for="event in events" :id="event['.key']">
         <div class="post-head">
           <img src="https://trackback.net/wp-content/uploads/2015/02/Dummy-profile-picture.png" alt="">
           <div class="post-user">
             <p class="is-size-4 has-text-primary">John Doe</p>
-            <p class="is-size-7">14 minutes ago</p>
+            <p class="is-size-7">{{ event.createdOn }}</p>
           </div>
         </div>
         <div class="post-body">
@@ -16,7 +16,7 @@
           <div class="details">
             <div>
               <i class="fa fa-info"></i>&nbsp;
-              <span>WMSU Palaro Rave Party 2k17</span>
+              <span>{{ event.description }}</span>
             </div>
             <div>
               <i class="fa fa-map-marker"></i>&nbsp;
@@ -24,14 +24,14 @@
             </div>
             <div>
               <i class="fa fa-th-list"></i>&nbsp;
-              <span>Party</span>
+              <span>{{ event.eventType }}</span>
             </div>
           </div>
           <hr>
           <div class="control">
             <div class="buttons">
               <i class="fa fa-check btn-is-active"></i>&nbsp;
-              <span>100</span>
+              <span>{{ Object.keys(event.verify).length }}</span>
             </div>
             <div class="buttons">
               <i class="fa fa-users"></i>
@@ -47,15 +47,36 @@
 </template>
 
 <script>
-  import firebase from 'firebase'
+  import {db} from '../config/firebase'
+  import moment from 'moment'
   export default {
     data(){
       return {
-
+        events: {}
+      }
+    },
+    firebase: {
+      events: {
+        source: db.ref('events'),
+        readyCallback: function () {
+          if(this.events){
+            this.events.forEach(item => {
+              item.createdOn = moment(item.createdOn).fromNow()
+            })
+          }
+        }
       }
     },
     methods: {
 
+    },
+    computed: {
+//      changeTime(){
+//        return this.events.forEach(item => {
+//          item.createdOn = moment(item.createdOn).fromNow()
+//          console.log(item.createdOn)
+//        })
+//      }
     }
   }
 </script>

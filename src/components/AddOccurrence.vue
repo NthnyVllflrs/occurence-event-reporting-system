@@ -28,11 +28,12 @@
               </div>
 
               <div class="field">
-                <p class="control has-icons-left">
-                  <input class="input" type="text" placeholder="Description">
-                  <span class="icon is-small is-left">
-                    <i class="fa fa-info"></i>
-                  </span>
+<<<<<<< HEAD
+                
+=======
+                <p class="control">
+                  <input class="input" type="text" placeholder="Description" v-model="description">
+>>>>>>> master
                 </p>
               </div>
 
@@ -53,39 +54,33 @@
               </div>
               
               <div class="field">
-                <p class="control has-icons-left">
-                  <span class="select">
-                    <select>
-                      <option>Convention</option>
-                      <option>Party</option>
-                      <option>Seminar</option>
-                      
-                      <option>Earthquake</option>
-                      <option>Fire</option>
-                      <option>Tsunami</option>
-                      <option>Typhoon</option>
-                    </select>
-                  </span>
-                  <span class="icon is-small is-left">
-                    <i class="fa fa-list"></i>
-                  </span>
-                </p>
+<<<<<<< HEAD
+                
+=======
+                <div class="select">
+                  <select v-model="selectedEventType">
+                    <option v-for="option in eventTypeOptions" :value="option.text">
+                      {{option.text}}
+                    </option>
+                  </select>
+                </div>
               </div>
               
-              <hr />
-              
-              <div class="is-clearfix">
-                <div class="is-pulled-right">
-                  <a class="button">
-                      <span>Cancel</span>
-                    </a>
-                    &nbsp
-                    <a class="button is-primary">
+              <hr>
+              <div class="level">
+                <div class="level-left"></div>
+                <div class="level-right">
+                  <p class="level-item">
+                    <a class="button is-primary" @click="postEvent">
+>>>>>>> master
                       <span>Post</span>
                     </a>
                 </div>
               </div>
+<<<<<<< HEAD
               
+=======
+>>>>>>> master
             </div>
           </div>
         </div>
@@ -98,14 +93,46 @@
 
 <script>
   import firebase from 'firebase'
+  import toastr from 'toastr'
+  import moment from 'moment'
   export default {
     data(){
       return {
-
+        description: '',
+        selectedEventType: 'Convention',
+        eventTypeOptions: [
+          {text: 'Convention'},
+          {text: 'Party'},
+          {text: 'Seminar'},
+          {text: 'Earthquake'},
+          {text: 'Fire'},
+          {text: 'Tsunami'},
+          {text: 'Typhoon'}
+        ]
       }
     },
     methods: {
-
+      postEvent(){
+        let user = this.$store.getters.currentUser
+        let date = new Date()
+        let iso = date.toISOString()
+        firebase.database().ref('/events').push({
+          createdBy: user.id,
+          description: this.description,
+          eventType: this.selectedEventType,
+          createdOn: iso,
+          verify: {
+            uid: user.id
+          }
+        }).then(() => {
+          toastr.success('Success!', 'Occurence created.')
+          this.description = ''
+          this.selectedEventType = 'Convention'
+          this.$router.push('/home')
+        }).catch(err => {
+          toastr.error(err)
+        })
+      }
     }
   }
 </script>
