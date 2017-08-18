@@ -38,34 +38,46 @@
     <!-- Sign Up Modal -->
     <div :class="{'is-active': signupDisplay}" class="modal">
       <div class="modal-background"></div>
-      <div class="modal-card">
+      <div class="modal-card card-wrapper">
         <header class="modal-card-head">
           <p class="modal-card-title">SIGNUP</p>
         </header>
         <section class="modal-card-body">
+
+          <div class="field">
+            <div class="control has-icons-left">
+              <input class="input" type="text" placeholder="Username">
+              <span class="icon is-small is-left">
+                <i class="fa fa-user"></i>
+              </span>
+            </div>
+          </div>
+
           <div class="field">
             <div class="control has-icons-left">
               <input class="input" type="email" placeholder="Email" v-model="signup.email">
               <span class="icon is-small is-left">
-            <i class="fa fa-envelope"></i>
-          </span>
+                <i class="fa fa-envelope"></i>
+              </span>
             </div>
           </div>
+
           <!--Div for password input field-->
           <div class="field">
             <div class="control has-icons-left">
               <input class="input" type="password" placeholder="Password" v-model="signup.password">
               <span class="icon is-small is-left">
-            <i class="fa fa-lock"></i>
-          </span>
+                <i class="fa fa-lock"></i>
+              </span>
             </div>
           </div>
+
           <div class="field">
             <div class="control has-icons-left">
               <input class="input" type="password" placeholder="Re-enter Password" v-model="signup.password2">
               <span class="icon is-small is-left">
-            <i class="fa fa-refresh"></i>
-          </span>
+                <i class="fa fa-refresh"></i>
+              </span>
             </div>
           </div>
         </section>
@@ -79,7 +91,7 @@
     <!-- Log In Modal -->
     <div :class="{'is-active': loginDisplay}" class="modal">
       <div class="modal-background"></div>
-      <div class="modal-card">
+      <div class="modal-card card-wrapper">
         <header class="modal-card-head">
           <p class="modal-card-title">LOGIN</p>
         </header>
@@ -172,5 +184,9 @@
 <style>
   .navbar-menu a.navbar-item i{
     color: #00d1b2;
+  }
+
+  .card-wrapper{
+    width:30%;
   }
 </style>
