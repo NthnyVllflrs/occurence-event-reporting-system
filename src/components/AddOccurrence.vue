@@ -28,12 +28,8 @@
               </div>
 
               <div class="field">
-<<<<<<< HEAD
-                
-=======
                 <p class="control">
                   <input class="input" type="text" placeholder="Description" v-model="description">
->>>>>>> master
                 </p>
               </div>
 
@@ -54,9 +50,6 @@
               </div>
               
               <div class="field">
-<<<<<<< HEAD
-                
-=======
                 <div class="select">
                   <select v-model="selectedEventType">
                     <option v-for="option in eventTypeOptions" :value="option.text">
@@ -72,15 +65,11 @@
                 <div class="level-right">
                   <p class="level-item">
                     <a class="button is-primary" @click="postEvent">
->>>>>>> master
                       <span>Post</span>
                     </a>
+                  </p>
                 </div>
               </div>
-<<<<<<< HEAD
-              
-=======
->>>>>>> master
             </div>
           </div>
         </div>
