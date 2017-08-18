@@ -60,7 +60,24 @@
 }
 
 .control{
-  display: flex;
+
+}
+
+.post-foot .control .icon{
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.post-foot .control .icon i{
+  color: #00d1b2;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 100ms ease-in-out;
+}
+
+.post-foot .control .icon:hover i{
+  color: white;
+  background-color: #00d1b2;
 }
 
 .control .buttons{
@@ -68,16 +85,16 @@
   margin-right: 20px;
 }
 
-.control .buttons:hover i{
-  color: white;
-  background-color: #00d1b2;
-}
-
 .control .buttons i{
   color: #00d1b2;
   padding: 5px;
   border-radius: 50%;
   transition: all 100ms ease-in-out;
+}
+
+.control .buttons:hover i{
+  color: white;
+  background-color: #00d1b2;
 }
 
 /* premade for is active button */

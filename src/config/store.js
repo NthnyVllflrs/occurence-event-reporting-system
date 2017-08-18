@@ -15,6 +15,9 @@ export const store = new Vuex.Store({
   mutations: {
     setUser(state, payload){
       state.user = payload
+    },
+    setFullName(state, payload){
+      state.fullName = payload
     }
   },
   actions: {
@@ -24,10 +27,15 @@ export const store = new Vuex.Store({
           let newUser = {
             id: user.uid
           }
-          toastr.success('Success!', 'You are now logged in.')
-          firebase.database().ref(`users/${user.uid}`).set({
-            email: user.email
+          user.updateProfile({
+            displayName: payload.fullName
+          }).then(() => {
+            toastr.success('Success!', 'You are now logged in.')
+            firebase.database().ref(`users/${user.uid}`).set({
+              email: user.email
+            })
           })
+
           commit('setUser', newUser)
           router.push('/home')
         }
@@ -55,11 +63,17 @@ export const store = new Vuex.Store({
       }).catch(err => {
         toastr.error(err.message)
       })
+    },
+    setFullName({commit}, payload){
+      commit('setFullName', payload)
     }
   },
   getters: {
     currentUser(state){
       return state.user
+    },
+    userFullName(state){
+      return state.fullName
     }
   },
   plugins: [createPersistedState()]

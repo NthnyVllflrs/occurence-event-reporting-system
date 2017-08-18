@@ -5,12 +5,12 @@
         <div class="post-head">
           <img src="https://trackback.net/wp-content/uploads/2015/02/Dummy-profile-picture.png" alt="">
           <div class="post-user">
-            <p class="is-size-4 has-text-primary">John Doe</p>
+            <p class="is-size-4 has-text-primary">{{ event.createdByName }}</p>
             <p class="is-size-7">{{ event.createdOn }}</p>
           </div>
         </div>
         <div class="post-body">
-          <img src="http://www.windman.co.il/wp-content/uploads/2013/08/windman-corporate-events-student-rave-2013-08-800x450.jpg" alt="">
+          <img :src="event.imgUrl" alt="">
         </div>
         <div class="post-foot">
           <div class="details">
@@ -36,16 +36,16 @@
             </div>
             <hr>
             <div class="control">
-              <div class="buttons">
+              <span class="icon">
                 <i class="fa fa-check btn-is-active"></i>&nbsp;
                 <span>{{ Object.keys(event.verify).length }}</span>
-              </div>
-              <div class="buttons">
-                <i class="fa fa-users"></i>
-              </div>
-              <div class="buttons">
-                <i class="fa fa-bookmark"></i>
-              </div>
+              </span>
+              <span class="icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              <span class="icon">
+                <i class="fa fa-bookmark-o"></i>
+              </span>
             </div>
           </div>
         </div>
@@ -57,6 +57,8 @@
 <script>
   import {db} from '../config/firebase'
   import moment from 'moment'
+  import firebase from 'firebase'
+  import toastr from 'toastr'
   export default {
     data(){
       return {
@@ -67,24 +69,20 @@
       events: {
         source: db.ref('events'),
         readyCallback: function () {
+          let storage = firebase.storage()
           if(this.events){
             this.events.forEach(item => {
-              item.createdOn = moment(item.createdOn).fromNow()
+              let gsRef = storage.ref(`images/${item['.key']}`)
+              gsRef.getDownloadURL().then(url => {
+                item.createdOn = moment(item.createdOn).fromNow()
+                item.imgUrl = url
+              }).catch(err => {
+                console.log(err)
+              })
             })
           }
         }
       }
-    },
-    methods: {
-
-    },
-    computed: {
-//      changeTime(){
-//        return this.events.forEach(item => {
-//          item.createdOn = moment(item.createdOn).fromNow()
-//          console.log(item.createdOn)
-//        })
-//      }
     }
   }
 </script>
