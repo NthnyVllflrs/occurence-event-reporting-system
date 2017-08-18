@@ -14,30 +14,38 @@
         </div>
         <div class="post-foot">
           <div class="details">
-            <div>
-              <i class="fa fa-info"></i>&nbsp;
-              <span>{{ event.description }}</span>
+            <div class="field">
+              <div class="is-success is-small">
+                <span class="icon is-small">
+                  <i class="fa fa-info"></i>
+                </span>&nbsp;
+                <span>{{ event.description }}</span>
+              </div>
+              <div class="is-success is-small">
+                <span class="icon is-small">
+                  <i class="fa fa-map-marker"></i>
+                </span>&nbsp;
+                <span>WMSU Open Grounds</span>
+              </div>
+              <div class="is-success is-small">
+                <span class="icon is-small">
+                  <i class="fa fa-th-list"></i>
+                </span>&nbsp;
+                <span>{{ event.eventType }}</span>
+              </div>
             </div>
-            <div>
-              <i class="fa fa-map-marker"></i>&nbsp;
-              <span>WMSU Open Field</span>
-            </div>
-            <div>
-              <i class="fa fa-th-list"></i>&nbsp;
-              <span>{{ event.eventType }}</span>
-            </div>
-          </div>
-          <hr>
-          <div class="control">
-            <div class="buttons">
-              <i class="fa fa-check btn-is-active"></i>&nbsp;
-              <span>{{ Object.keys(event.verify).length }}</span>
-            </div>
-            <div class="buttons">
-              <i class="fa fa-users"></i>
-            </div>
-            <div class="buttons">
-              <i class="fa fa-bookmark"></i>
+            <hr>
+            <div class="control">
+              <div class="buttons">
+                <i class="fa fa-check btn-is-active"></i>&nbsp;
+                <span>{{ Object.keys(event.verify).length }}</span>
+              </div>
+              <div class="buttons">
+                <i class="fa fa-users"></i>
+              </div>
+              <div class="buttons">
+                <i class="fa fa-bookmark"></i>
+              </div>
             </div>
           </div>
         </div>
