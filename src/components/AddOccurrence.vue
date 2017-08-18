@@ -28,28 +28,28 @@
               </div>
 
               <div class="field">
-                <p class="control">
+                <p class="control has-icons-left">
                   <input class="input" type="text" placeholder="Description" v-model="description">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-info"></i>
+                  </span>
                 </p>
               </div>
 
-              <div class="field">
-                <div class="level">
-                  <div class="level-left">
-                    <div class="level-item">
-                      <div class="field">
-                        <p class="control ">
-                          <input class="input" type="text" placeholder="Location">
-                        </p>
-                      </div>
-                    </div>
-                    <p class="level-item">
-                      <a class="button is-primary">
-                        <span class="icon"><i class="fa fa-globe"></i></span>
-                      </a>
-                    </p>
-                  </div>
-                </div>
+              <div class="field has-addons">
+                <p class="control has-icons-left">
+                  <input class="input" type="text" placeholder="Location">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-map-marker"></i>
+                  </span>
+                </p>
+                <p class="control">
+                  <button class="button is-primary is-inverted">
+                    <span class="icon is-left">
+                      <i class="fa fa-globe"></i>
+                    </span>
+                  </button>
+                </p>
               </div>
               
               <div class="field">
@@ -144,7 +144,5 @@
 </script>
 
 <style scoped>
-  .container-width{
-    width: 40%;
-  }
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 </style>
