@@ -43,13 +43,23 @@
           <p class="modal-card-title">SIGNUP</p>
         </header>
         <section class="modal-card-body">
-
+        
           <div class="field">
-            <div class="control has-icons-left">
-              <input class="input" type="text" placeholder="Username">
-              <span class="icon is-small is-left">
-                <i class="fa fa-user"></i>
-              </span>
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <div class="control">
+                    <input class="input" type="text" placeholder="Firstname">
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <div class="control">
+                    <input class="input" type="text" placeholder="Lastname">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -188,5 +198,11 @@
 
   .card-wrapper{
     width:30%;
+  }
+
+  @media (max-width: 768px){
+    .card-wrapper{
+      width: 100%;
+    }
   }
 </style>
