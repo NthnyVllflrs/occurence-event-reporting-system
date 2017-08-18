@@ -25,7 +25,7 @@
           <a class="navbar-link"></a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              John Doe
+              {{ userFullName }}
             </div>
             <hr class="navbar-divider">
             <a class="has-text-danger navbar-item" @click="logOutUser">LOG OUT</a>
@@ -49,14 +49,14 @@
               <div class="column">
                 <div class="field">
                   <div class="control">
-                    <input class="input" type="text" placeholder="Firstname">
+                    <input class="input" type="text" placeholder="Firstname" v-model="signup.firstName">
                   </div>
                 </div>
               </div>
               <div class="column">
                 <div class="field">
                   <div class="control">
-                    <input class="input" type="text" placeholder="Lastname">
+                    <input class="input" type="text" placeholder="Lastname" v-model="signup.lastName">
                   </div>
                 </div>
               </div>
@@ -145,6 +145,8 @@
         navBarToggle: false,
         dropdownToggle: false,
         signup: {
+          firstName: '',
+          lastName: '',
           email: '',
           password: '',
           password2: ''
@@ -158,7 +160,7 @@
     methods: {
       signUpUser(){
         if(this.verifyPassword) {
-          this.$store.dispatch('signUpUser', {email: this.signup.email, password: this.signup.password})
+          this.$store.dispatch('signUpUser', {email: this.signup.email, password: this.signup.password, fullName: `${this.signup.firstName} ${this.signup.lastName}`})
         } else {
           toastr.error('Passwords do not match.')
         }
@@ -186,6 +188,9 @@
       },
       isSignedIn(){
         return !!this.$store.getters.currentUser
+      },
+      userFullName(){
+        return this.$store.getters.userFullName
       }
     }
   }

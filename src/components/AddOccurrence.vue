@@ -111,7 +111,8 @@
         let iso = date.toISOString()
 
         firebase.database().ref('/events').push({
-          createdBy: user.id,
+          createdById: user.id,
+          createdByName: this.$store.getters.userFullName,
           description: this.description,
           eventType: this.selectedEventType,
           createdOn: iso,
@@ -129,16 +130,13 @@
           this.selectedEventType = 'Convention'
           this.$router.push('/home')
         }).catch(err => {
-          toastr.error(err)
+          toastr.error(err.message)
         })
       },
       getFileName(){
         let file = document.getElementById('file')
         this.fileName = file.files[0].name
       }
-    },
-    computed: {
-
     }
   }
 </script>
