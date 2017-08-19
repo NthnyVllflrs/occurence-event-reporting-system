@@ -62,28 +62,33 @@
   export default {
     data(){
       return {
-        events: {}
+
       }
     },
-    firebase: {
-      events: {
-        source: db.ref('events'),
-        readyCallback: function () {
-          let storage = firebase.storage()
-          if(this.events){
-            this.events.forEach(item => {
-              let gsRef = storage.ref(`images/${item['.key']}`)
-              gsRef.getDownloadURL().then(url => {
-                item.createdOn = moment(item.createdOn).fromNow()
-                item.imgUrl = url
-              }).catch(err => {
-                console.log(err)
-              })
-            })
-          }
-        }
+    computed: {
+      events(){
+        return this.$store.getters.loadedOccurence
       }
     }
+//    firebase: {
+//      events: {
+//        source: db.ref('events'),
+//        readyCallback: function () {
+//          let storage = firebase.storage()
+//          if(this.events){
+//            this.events.forEach(item => {
+//              let gsRef = storage.ref(`images/${item['.key']}`)
+//              gsRef.getDownloadURL().then(url => {
+//                item.createdOn = moment(item.createdOn).fromNow()
+//                item.imgUrl = url
+//              }).catch(err => {
+//                console.log(err)
+//              })
+//            })
+//          }
+//        }
+//      }
+//    }
   }
 </script>
 

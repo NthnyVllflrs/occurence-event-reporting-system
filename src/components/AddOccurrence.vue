@@ -106,32 +106,20 @@
     },
     methods: {
       postEvent(){
-        let user = this.$store.getters.currentUser
         let date = new Date()
         let iso = date.toISOString()
+        let file = document.getElementById('file')
+        let description = this.description
+        let selectedEventType = this.selectedEventType
 
-        firebase.database().ref('/events').push({
-          createdById: user.id,
-          createdByName: this.$store.getters.userFullName,
-          description: this.description,
-          eventType: this.selectedEventType,
+        this.$store.dispatch('addOccurence', {
+          description,
+          eventType: selectedEventType,
           createdOn: iso,
-          verify: {
-            uid: user.id
-          }
-        }).then(post => {
-          let postKey = post.key
-          let file = document.getElementById('file')
-          let storageRef = firebase.storage().ref(`images/${postKey}`)
-          storageRef.put(file.files[0])
-
-          toastr.success('Success!', 'Occurence created.')
-          this.description = ''
-          this.selectedEventType = 'Convention'
-          this.$router.push('/home')
-        }).catch(err => {
-          toastr.error(err.message)
+          file: file.files[0]
         })
+        this.description = ''
+        this.selectedEventType = 'Convention'
       },
       getFileName(){
         let file = document.getElementById('file')

@@ -24,6 +24,7 @@ new Vue({
         this.$store.dispatch('setFullName', null)
       }
     })
+    this.$store.dispatch('loadEvents')
   }
   // beforeCreate: () => {
   //   firebase.auth().onAuthStateChanged(user => {
