@@ -76,7 +76,7 @@ export const store = new Vuex.Store({
     setFullName({commit}, payload){
       commit('setFullName', payload)
     },
-    addOccurence({commit, getters}, payload){
+    addOccurence({dispatch, commit, getters}, payload){
       const event = {
         createdById: getters.currentUser.id,
         createdByName: getters.userFullName,
@@ -97,7 +97,7 @@ export const store = new Vuex.Store({
             ...event,
             id: postKey
         })
-        commit('loadEvents')
+        dispatch('loadEvents')
         toastr.success('Success!', 'Occurence created.')
         router.push('/home')
       }).catch(err => {
@@ -108,6 +108,7 @@ export const store = new Vuex.Store({
       firebase.database().ref('/events').once('value').then(event => {
         const events = []
         const obj = event.val()
+        //add moment here
         for(let key in obj){
           events.push({
             id: key,

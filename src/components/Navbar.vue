@@ -12,7 +12,7 @@
       <div :class="{'is-active': navBarToggle}" class="navbar-end navbar-menu">
         <a class="navbar-item" @click="loginDisplay = true" v-if="!isSignedIn">LOGIN</a>
         <a class="has-text-primary navbar-item" @click="signupDisplay = true" v-if="!isSignedIn">SIGN UP</a>
-        <router-link class="navbar-item" v-if="isSignedIn" to="/home">
+        <router-link class="navbar-item" @click.native="loadEvents" v-if="isSignedIn" to="/home">
           <i class="fa fa-home" aria-hidden="true"></i>
         </router-link>
         <router-link class="navbar-item" v-if="isSignedIn" to="/home">
@@ -180,6 +180,9 @@
       logOutUser(){
         this.$store.dispatch('logoutUser')
         this.navBarToggle = false
+      },
+      loadEvents(){
+        this.$store.dispatch('loadEvents')
       }
     },
     computed: {
