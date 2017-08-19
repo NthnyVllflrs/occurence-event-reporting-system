@@ -14,14 +14,14 @@
               <div class="field">
                 <div class="file is-small has-name is-fullwidth">
                   <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
+                    <input class="file-input" type="file" id="file" accept=".jpg, .jpeg, .png" @change="getFileName">
                     <span class="file-cta">
                       <span class="file-label">
                         Choose Image
                       </span>
                     </span>
                     <span class="file-name">
-                      Screen Shot 2017-07-29 at 15.54.25.png
+                      {{ fileName }}
                     </span>
                   </label>
                 </div>
@@ -90,6 +90,7 @@
   export default {
     data(){
       return {
+        fileName: '',
         description: '',
         selectedEventType: 'Convention',
         eventTypeOptions: [
@@ -108,22 +109,33 @@
         let user = this.$store.getters.currentUser
         let date = new Date()
         let iso = date.toISOString()
+
         firebase.database().ref('/events').push({
-          createdBy: user.id,
+          createdById: user.id,
+          createdByName: this.$store.getters.userFullName,
           description: this.description,
           eventType: this.selectedEventType,
           createdOn: iso,
           verify: {
             uid: user.id
           }
-        }).then(() => {
+        }).then(post => {
+          let postKey = post.key
+          let file = document.getElementById('file')
+          let storageRef = firebase.storage().ref(`images/${postKey}`)
+          storageRef.put(file.files[0])
+
           toastr.success('Success!', 'Occurence created.')
           this.description = ''
           this.selectedEventType = 'Convention'
           this.$router.push('/home')
         }).catch(err => {
-          toastr.error(err)
+          toastr.error(err.message)
         })
+      },
+      getFileName(){
+        let file = document.getElementById('file')
+        this.fileName = file.files[0].name
       }
     }
   }

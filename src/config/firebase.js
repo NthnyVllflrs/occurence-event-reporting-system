@@ -5,7 +5,7 @@ const firebaseApp = Firebase.initializeApp({
   authDomain: "occurence-df954.firebaseapp.com",
   databaseURL: "https://occurence-df954.firebaseio.com",
   projectId: "occurence-df954",
-  storageBucket: "",
+  storageBucket: "gs://occurence-df954.appspot.com/",
   messagingSenderId: "779704581019"
 })
 
