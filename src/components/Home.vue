@@ -6,7 +6,7 @@
           <img src="https://trackback.net/wp-content/uploads/2015/02/Dummy-profile-picture.png" alt="">
           <div class="post-user">
             <p class="is-size-4 has-text-primary">{{ event.createdByName }}</p>
-            <p class="is-size-7">{{ event.createdOn }}</p>
+            <p class="is-size-7">{{ event.createdOn | date }}</p>
           </div>
         </div>
         <div class="post-body">

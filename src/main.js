@@ -4,9 +4,12 @@ import App from './App.vue'
 import './config/firebase'
 import VueFire from 'vuefire'
 import firebase from 'firebase'
+import DateFilter from './filters/date'
 
 Vue.use(VueRouter)
 Vue.use(VueFire)
+
+Vue.filter('date', DateFilter)
 
 import {store} from "./config/store"
 import {router} from "./config/routes"

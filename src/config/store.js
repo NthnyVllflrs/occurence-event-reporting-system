@@ -91,15 +91,18 @@ export const store = new Vuex.Store({
       firebase.database().ref('/events').push(event).then(post => {
         let postKey = post.key
         let storageRef = firebase.storage().ref(`images/${postKey}`)
-        storageRef.put(payload.file)
-        //Add file to event object here
-        commit('createOccurence', {
+        storageRef.put(payload.file).then(() => {
+          commit('createOccurence', {
             ...event,
             id: postKey
+          })
+          dispatch('loadEvents')
+          toastr.success('Success!', 'Occurence created.')
+          router.push('/home')
         })
-        dispatch('loadEvents')
-        toastr.success('Success!', 'Occurence created.')
-        router.push('/home')
+
+        //Add file to event object here
+
       }).catch(err => {
         toastr.error(err.message)
       })
@@ -107,24 +110,35 @@ export const store = new Vuex.Store({
     loadEvents({commit}){
       firebase.database().ref('/events').once('value').then(event => {
         const events = []
+        const promises = []
         const obj = event.val()
-        //add moment here
+
         for(let key in obj){
-          events.push({
-            id: key,
-            createdById: obj[key].createdById,
-            createdByName: obj[key].createdByName,
-            description: obj[key].description,
-            eventType: obj[key].eventType,
-            createdOn: obj[key].createdOn,
-            verify: {
-              uid: obj[key].verify.uid
-            }
+          let storageRef = firebase.storage().ref(`images/${key}`)
+          let promise = storageRef.getDownloadURL().then(url => {
+            events.push({
+              id: key,
+              createdById: obj[key].createdById,
+              createdByName: obj[key].createdByName,
+              description: obj[key].description,
+              eventType: obj[key].eventType,
+              createdOn: obj[key].createdOn,
+              verify: {
+                uid: obj[key].verify.uid
+              },
+              imgUrl: url
+            })
           })
+          promises.push(promise)
         }
-        commit('setLoadedOccurence', events)
+        Promise.all(promises).then(() => {
+          commit('setLoadedOccurence', events)
+        }).catch(err => {
+          console.log(err)
+          toastr.error('Seems like there\'s an error1')
+        })
       }).catch(err => {
-        toastr.error('Seems like there\'s an error')
+        toastr.error('Seems like there\'s an error2')
       })
     }
   },
@@ -136,7 +150,9 @@ export const store = new Vuex.Store({
       return state.fullName
     },
     loadedOccurence(state){
-      return state.events.sort((eventA, eventB) => eventA.createdOn < eventB.createdOn)
+      return state.events.sort((eventA, eventB) => {
+        return eventA.createdOn < eventB.createdOn
+      })
     }
   },
   plugins: [createPersistedState()]
