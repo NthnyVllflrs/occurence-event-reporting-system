@@ -6,7 +6,7 @@
           <img src="https://trackback.net/wp-content/uploads/2015/02/Dummy-profile-picture.png" alt="">
           <div class="post-user">
             <p class="is-size-4 has-text-primary">{{ event.createdByName }}</p>
-            <p class="is-size-7">{{ event.createdOn }}</p>
+            <p class="is-size-7">{{ event.createdOn | date }}</p>
           </div>
         </div>
         <div class="post-body">
@@ -62,28 +62,33 @@
   export default {
     data(){
       return {
-        events: {}
+
       }
     },
-    firebase: {
-      events: {
-        source: db.ref('events'),
-        readyCallback: function () {
-          let storage = firebase.storage()
-          if(this.events){
-            this.events.forEach(item => {
-              let gsRef = storage.ref(`images/${item['.key']}`)
-              gsRef.getDownloadURL().then(url => {
-                item.createdOn = moment(item.createdOn).fromNow()
-                item.imgUrl = url
-              }).catch(err => {
-                console.log(err)
-              })
-            })
-          }
-        }
+    computed: {
+      events(){
+        return this.$store.getters.loadedOccurence
       }
     }
+//    firebase: {
+//      events: {
+//        source: db.ref('events'),
+//        readyCallback: function () {
+//          let storage = firebase.storage()
+//          if(this.events){
+//            this.events.forEach(item => {
+//              let gsRef = storage.ref(`images/${item['.key']}`)
+//              gsRef.getDownloadURL().then(url => {
+//                item.createdOn = moment(item.createdOn).fromNow()
+//                item.imgUrl = url
+//              }).catch(err => {
+//                console.log(err)
+//              })
+//            })
+//          }
+//        }
+//      }
+//    }
   }
 </script>
 
