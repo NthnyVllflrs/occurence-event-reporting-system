@@ -24,9 +24,12 @@
         <div :class="{'is-active': dropdownToggle}" class="navbar-item has-dropdown" @click="dropdownToggle = !dropdownToggle" v-if="isSignedIn">
           <a class="navbar-link"></a>
           <div class="navbar-dropdown is-right">
+            <!--
             <div class="navbar-item">
               {{ userFullName }}
             </div>
+            -->
+            <a class="navbar-item" href="/profile">{{ userFullName }}</a>
             <hr class="navbar-divider">
             <a class="has-text-danger navbar-item" @click="logOutUser">LOG OUT</a>
           </div>
