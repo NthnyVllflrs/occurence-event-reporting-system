@@ -85,7 +85,10 @@ export const store = new Vuex.Store({
         createdOn: payload.createdOn,
         verify: {
           uid: getters.currentUser.id
-        }
+        },
+        place: payload.place,
+        lat: payload.lat,
+        lng: payload.lng
       }
 
       firebase.database().ref('/events').push(event).then(post => {
@@ -126,7 +129,8 @@ export const store = new Vuex.Store({
               verify: {
                 uid: obj[key].verify.uid
               },
-              imgUrl: url
+              imgUrl: url,
+              place: obj[key].place
             })
           })
           promises.push(promise)

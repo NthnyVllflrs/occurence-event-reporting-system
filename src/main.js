@@ -3,11 +3,18 @@ import VueRouter from 'vue-router'
 import App from './App.vue'
 import './config/firebase'
 import VueFire from 'vuefire'
+import * as VueGoogleMaps from 'vue2-google-maps'
 import firebase from 'firebase'
 import DateFilter from './filters/date'
 
 Vue.use(VueRouter)
 Vue.use(VueFire)
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyAwG2FvuLOl_rGjp4LHR6XSeLIG_ZjjJ0M',
+    libraries: 'places'
+  }
+})
 
 Vue.filter('date', DateFilter)
 
@@ -27,11 +34,5 @@ new Vue({
         this.$store.dispatch('setFullName', null)
       }
     })
-    this.$store.dispatch('loadEvents')
   }
-  // beforeCreate: () => {
-  //   firebase.auth().onAuthStateChanged(user => {
-  //     console.log(user)
-  //   })
-  // }
 })
