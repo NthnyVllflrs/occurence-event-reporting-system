@@ -25,7 +25,7 @@
                 <span class="icon is-small">
                   <i class="fa fa-map-marker"></i>
                 </span>&nbsp;
-                <span>WMSU Open Grounds</span>
+                <span>{{ event.place }}</span>
               </div>
               <div class="is-success is-small">
                 <span class="icon is-small">
@@ -69,26 +69,10 @@
       events(){
         return this.$store.getters.loadedOccurence
       }
+    },
+    created(){
+      this.$store.dispatch('loadEvents')
     }
-//    firebase: {
-//      events: {
-//        source: db.ref('events'),
-//        readyCallback: function () {
-//          let storage = firebase.storage()
-//          if(this.events){
-//            this.events.forEach(item => {
-//              let gsRef = storage.ref(`images/${item['.key']}`)
-//              gsRef.getDownloadURL().then(url => {
-//                item.createdOn = moment(item.createdOn).fromNow()
-//                item.imgUrl = url
-//              }).catch(err => {
-//                console.log(err)
-//              })
-//            })
-//          }
-//        }
-//      }
-//    }
   }
 </script>
 

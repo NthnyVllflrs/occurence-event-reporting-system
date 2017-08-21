@@ -38,13 +38,13 @@
 
               <div class="field has-addons">
                 <p class="control has-icons-left">
-                  <input class="input" type="text" placeholder="Location">
+                  <input class="input" type="text" placeholder="Location" v-model="place" disabled>
                   <span class="icon is-small is-left">
                     <i class="fa fa-map-marker"></i>
                   </span>
                 </p>
                 <p class="control">
-                  <button class="button is-primary is-inverted">
+                  <button class="button is-primary is-inverted" @click="toggleMaps = true">
                     <span class="icon is-left">
                       <i class="fa fa-globe"></i>
                     </span>
@@ -61,7 +61,6 @@
                   </select>
                 </div>
               </div>
-              
               <hr>
               <div class="level">
                 <div class="level-left"></div>
@@ -78,15 +77,33 @@
         </div>
       </div>
     </div>
-
+      <!--Google maps-->
+    <div class="modal" :class="{'is-active': toggleMaps}">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <gmap-autocomplete class="input" @place_changed="setPlace"></gmap-autocomplete>
+        <Gmap-map
+          :center="center"
+          :zoom="10"
+          map-type-id="terrain"
+          style="width: 100%; height: 500px;"
+        >
+          <gmap-marker
+            :position="center"
+            :clickable="true"
+          >
+            <!--Will change later, draggable with coords-->
+          </gmap-marker>
+        </Gmap-map>
+      </div>
+      <button class="modal-close is-large" aria-label="close" @click="toggleMaps = false"></button>
+    </div>
   </section>
 </div>
 </template>
 
 <script>
-  import firebase from 'firebase'
-  import toastr from 'toastr'
-  import moment from 'moment'
+  import axios from 'axios'
   export default {
     data(){
       return {
@@ -101,7 +118,13 @@
           {text: 'Fire'},
           {text: 'Tsunami'},
           {text: 'Typhoon'}
-        ]
+        ],
+        toggleMaps: false,
+        center: {
+          lat: 10,
+          lng: 10
+        },
+        place: ''
       }
     },
     methods: {
@@ -111,12 +134,18 @@
         let file = document.getElementById('file')
         let description = this.description
         let selectedEventType = this.selectedEventType
+        let place = this.place
+        let lat = this.center.lat
+        let lng = this.center.lng
 
         this.$store.dispatch('addOccurence', {
           description,
           eventType: selectedEventType,
           createdOn: iso,
-          file: file.files[0]
+          file: file.files[0],
+          place,
+          lat,
+          lng
         })
         this.description = ''
         this.selectedEventType = 'Convention'
@@ -124,7 +153,23 @@
       getFileName(){
         let file = document.getElementById('file')
         this.fileName = file.files[0].name
+      },
+      setPlace(place){
+        let geolocation = {}
+        geolocation.lat = place.geometry.location.lat()
+        geolocation.lng = place.geometry.location.lng()
+        this.center = geolocation
+//        console.log(place.geometry.location.lat())
+        this.place = place.formatted_address
       }
+    },
+    mounted(){
+      axios.get('http://ip-api.com/json').then(res => {
+        let geolocation = {}
+        geolocation.lat = res.data.lat
+        geolocation.lng = res.data.lon
+        this.center = geolocation
+      })
     }
   }
 </script>
