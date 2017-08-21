@@ -61,7 +61,6 @@
   padding: 50px 12px;
 }
 
-<<<<<<< HEAD
 .content .content-image{
   width: 75%;
   height: 20px;
@@ -74,83 +73,3 @@
 .container-width{
   width: 70%;
 }
-=======
-.column{
-  display: inline-block;
-  /* text-align: center; */
-}
-
-.column .icon{
-  border: 2px solid #00d1b2;
-  border-radius: none;
-  border: none;
-  /* padding: 40px;
-  margin-bottom: 10px; */
-}
-
-.column .icon .fa{
-  color:  #00d1b2;
-}
-
-.button{
-  /* margin-left: 10%; */
-}
-
-.content .content-image{
-  width: 55%;
-  /* height: 20px; */
-}
-
-.level{
-  display: inline-block;
-  /* text-align: center; */
-  /* border-style: groove; */
-  padding: 10px 10px 10px 0px;
-  width: 12%;
-  /* border-radius: 2px; */
-  margin-top: 20px;
-}
-
-.verify .button{
-  margin: 0 auto;
-  padding: 0;
-  width: 113px;
-}
-
-.attend .button{
-  margin: 20px;
-
-}
-
-.field{
-  margin: 0px;
-  padding: 0px;
-}
-
-.subbox{
-  background-color: white;
-}
-.subbox .box{
-  padding: 10px 10px 10px 10px;
-  background-color: #23d160
-}
-
-.subbox .box .field {
-  margin: 0px;
-  padding: 0px;
-
-}
-
-.button2 .button{
-  margin-left: 10%;
-}
-
-/* .media{
-  background-color: #00DFAA;
-
-}
-
-.box{
-  background-color: #00DFAA;
-} */
->>>>>>> 6b1387ba7cd175104a0ba32e6d397e5dd017f4b1
