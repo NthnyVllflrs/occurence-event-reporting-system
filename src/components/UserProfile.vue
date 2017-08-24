@@ -1,4 +1,5 @@
 <template>
+<div>
 <div style="padding-top: 72px">
   <div class="container profile">
 
@@ -12,7 +13,7 @@
         <div class="column is-5">
           <p>
             <span class="title is-bold">Anthony Villaflores</span>
-            <span class="button is-primary is-inverted is-small">
+            <span class="button is-primary is-inverted is-small" @click="editDisplay = true">
               <span class="icon is-small"><i class="fa fa-edit"></i></span>
             </span>
           </p>
@@ -129,6 +130,57 @@
       </div>
     </div>
   </div>
+
+    <div :class="{'is-active': editDisplay}" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card card-wrapper">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Edit Profile</p>
+        </header>
+        <section class="modal-card-body">
+          <div class="columns">
+            <div class="column is-8 is-offset-2">
+              <div class="field">
+                <div class="image is-square">
+                  <img src="https://1001freedownloads.s3.amazonaws.com/vector/thumb/77508/Robot_Head_Even.png" class="editProfile">
+                </div>
+              </div>
+              <div class="field">
+                <div class="file is-small has-name is-fullwidth">
+                  <label class="file-label">
+                    <input class="file-input" type="file" id="file" accept=".jpg, .jpeg, .png" @change="getFileName">
+                    <span class="file-cta">
+                      <span class="file-label">
+                        Choose Image
+                      </span>
+                    </span>
+                    <span class="file-name">
+                    
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="Firstname">
+                </div>
+              </div>
+
+              <div class="field">
+                <div class="control">
+                  <input class="input" type="text" placeholder="Lastname">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <footer class="modal-card-foot" style="justify-content:flex-end;">
+          <a class="button" @click="editDisplay = false">Cancel</a>
+          <a class="button is-primary">Save</a>
+        </footer>
+      </div>
+    </div>
+</div>
 </div>
 </template>
 
@@ -140,7 +192,7 @@
   export default {
     data(){
       return {
-
+        editDisplay: false,
       }
     },
     computed: {
