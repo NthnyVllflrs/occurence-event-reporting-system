@@ -1,0 +1,63 @@
+.is-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border: none;
+  z-index: 2;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.16), 0 1px 2px rgba(0,0,0,0.23);
+}
+
+.hero.is-primary .nav{
+  box-shadow: none;
+}
+
+.banner-logo{
+  padding-left: 10px;
+}
+
+.nav-toggle{
+  background-color: #00d1b2;
+}
+
+.links{
+  transition: all 200ms ease-in-out;
+}
+
+.links:hover{
+  transform: translate(0px, -3px);
+}
+
+.banner-img{
+  background-image: url("../images/banner-img.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.has-text-centered a.btnLink{
+  transition: all 200ms ease-in-out;
+}
+
+  /*About Section*/
+.colorSection{
+  background-color: whitesmoke;
+}
+
+.addPadding{
+  padding: 50px 12px;
+}
+
+.content .content-image{
+  width: 75%;
+  height: 20px;
+}
+
+.temp{
+  background-color: greenyellow;
+}
+
+.container-width{
+  width: 70%;
+}

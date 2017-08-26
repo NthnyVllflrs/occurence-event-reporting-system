@@ -1,0 +1,21 @@
+.profile-heading img{
+  background-color: coral;
+  border: 1px solid lightgray;
+  border-radius: 50%;
+}
+
+img.editProfile{
+  background-color: coral;
+  border: 1px solid lightgray;
+  border-radius: 50%;
+}
+
+.card-wrapper{
+  width:30%;
+}
+
+@media (max-width: 768px){
+  .card-wrapper{
+    width: 100%;
+  }
+}
