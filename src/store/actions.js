@@ -39,13 +39,15 @@ export default {
     //Firebase function to log in a user
     firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
       payload.progress.finish()
+      toastr.success('You are now logged in!')
       //Find the user id from direbase and store it to our vuex store
-      firebase.database().ref(`users/${user.uid}`).once('value').then(snapshot => {
+      firebase.database().ref(`users/${user.uid}`).once('value', snapshot => {
         //Setting the user to our vuex store in mutations.js
         // bringing the returned value from firebase
         commit('SET_USER', snapshot.val())
         router.push('/home')
       })
+
     }).catch(err => {
       payload.progress.fail()
       toastr.error(err.message)
@@ -58,6 +60,11 @@ export default {
       commit('SET_USER', null)
       progress.finish()
       router.push('/')
+    })
+  },
+  LOAD_CURRENT_USER: ({commit}, {uid}) => {
+    firebase.database().ref(`users/${uid}`).on('value', snapshot => {
+      commit('SET_USER', snapshot.val())
     })
   },
   LOAD_EVENTS: ({commit}, {progress}) => {
@@ -111,5 +118,9 @@ export default {
     }).catch(err => {
       toastr.error(err.message)
     })
+  },
+  VERIFY_EVENT: ({getters}, {eventKey}) => {
+    //Add user id to verify node inside firebase and the counter will update in real time
+    firebase.database().ref(`events/${eventKey}/verify`).child(getters.getUserData.id).set(true)
   }
 }

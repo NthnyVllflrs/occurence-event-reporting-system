@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import LandingPage from '../components/LandingPage.vue'
 import Home from '../components/Home.vue'
 import AddOccurrence from '../components/AddOccurrence.vue'
+import UserProfile from '../components/UserProfile.vue'
 
 //Import vuex store
 import { store } from '../store'
@@ -25,7 +26,7 @@ const routes = [
   },
   { path: '/home',  component: Home, beforeEnter: AuthGuard },
   { path: '/home/add',  component: AddOccurrence, beforeEnter: AuthGuard },
-  { path: '/profile',  component: LandingPage, beforeEnter: AuthGuard },
+  { path: '/profile',  component: UserProfile, beforeEnter: AuthGuard },
 ]
 
 export const router = new VueRouter({

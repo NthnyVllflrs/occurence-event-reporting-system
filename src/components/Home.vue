@@ -36,9 +36,9 @@
             </div>
             <hr>
             <div class="control">
-              <span class="icon">
+              <span class="icon" @click="verifyPost(event.key)">
                 <i class="fa fa-check btn-is-active"></i>&nbsp;
-                <span>1</span>
+                <span>{{ (typeof event.verify !== 'undefined' && Object.keys(event.verify).length > 0) ? Object.keys(event.verify).length : 0 }}</span>
               </span>
               <span class="icon">
                 <i class="fa fa-calendar-check-o"></i>
@@ -58,13 +58,22 @@
 
       }
     },
+    methods: {
+      verifyPost(eventKey){
+        //Verify event passing the event key
+        this.$store.dispatch('VERIFY_EVENT', {eventKey})
+      }
+    },
     computed: {
       loadEvents(){
+        //Load all events for usage
         return this.$store.getters.getAllEvents
       }
     },
     created(){
+      //Dispatching for firebase to be realtime
       this.$store.dispatch('LOAD_EVENTS', {progress: this.$Progress})
+      this.$store.dispatch('LOAD_CURRENT_USER', {uid: this.$store.getters.getUserData.id})
     }
   }
 </script>

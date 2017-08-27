@@ -36,8 +36,9 @@ new Vue({
 
     //If the auth state is changed, change the value of isSignedIn from our store's state
     firebase.auth().onAuthStateChanged(user => {
-      if(user)
+      if(user){
         store.commit('AUTH_CHANGE', true)
+      }
       else
         store.commit('AUTH_CHANGE', false)
     })

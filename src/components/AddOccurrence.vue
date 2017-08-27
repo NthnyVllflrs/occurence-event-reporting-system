@@ -104,6 +104,7 @@
 
 <script>
 //  import axios from 'axios'
+  import toastr from 'toastr'
   export default {
     data(){
       return {
@@ -133,14 +134,22 @@
         let eventType = this.selectedEventType
         //If all the fields are filled up.
         if(file.files && description && eventType){
-          console.log('hello')
+          //Call ADD_EVENTS action from actions.js with payload
           this.$store.dispatch('ADD_EVENTS', {
             img: file.files[0],
             createdOn: new Date().toISOString(),
             description,
             eventType
           })
+        } else {
+          toastr.error('Please fill up all the fields.')
         }
+        //Clear all the fields after clicking submit
+        this.clearAddFields()
+      },
+      clearAddFields(){
+        this.fileName = ''
+        this.eventDescription = ''
       }
     }
 //    mounted(){
