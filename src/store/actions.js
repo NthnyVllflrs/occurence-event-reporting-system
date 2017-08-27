@@ -120,7 +120,17 @@ export default {
     })
   },
   VERIFY_EVENT: ({getters}, {eventKey}) => {
-    //Add user id to verify node inside firebase and the counter will update in real time
-    firebase.database().ref(`events/${eventKey}/verify`).child(getters.getUserData.id).set(true)
+    //Create the reference
+    let eventVerifyRef = firebase.database().ref(`events/${eventKey}/verify`)
+    eventVerifyRef.once('value', snap => {
+      if(snap.hasChild(getters.getUserData.id)){
+        //If the user verified this post then delete
+        eventVerifyRef.child(getters.getUserData.id).remove()
+      } else {
+        //If the user not yet verified this post
+        //Add user id to verify node inside firebase and the counter will update in real time
+        eventVerifyRef.child(getters.getUserData.id).set(true)
+      }
+    })
   }
 }

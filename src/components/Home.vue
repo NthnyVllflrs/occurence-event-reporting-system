@@ -37,7 +37,7 @@
             <hr>
             <div class="control">
               <span class="icon" @click="verifyPost(event.key)">
-                <i class="fa fa-check btn-is-active"></i>&nbsp;
+                <i class="fa fa-check " :class="{'btn-is-active': event.verify && event.verify.hasOwnProperty(`${ getUserId }`)}"></i>&nbsp;
                 <span>{{ (typeof event.verify !== 'undefined' && Object.keys(event.verify).length > 0) ? Object.keys(event.verify).length : 0 }}</span>
               </span>
               <span class="icon">
@@ -55,7 +55,7 @@
   export default {
     data(){
       return {
-
+        toggleVerify: false
       }
     },
     methods: {
@@ -68,6 +68,9 @@
       loadEvents(){
         //Load all events for usage
         return this.$store.getters.getAllEvents
+      },
+      getUserId(){
+        return this.$store.getters.getUserData.id
       }
     },
     created(){
