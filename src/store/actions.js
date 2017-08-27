@@ -64,37 +64,52 @@ export default {
     progress.start()
     firebase.database().ref('events').on('value', snap => {
       let events = []
-      let promises = []
-      let obj = snap.val()
-      //Iterate through an object
-      for(let key in obj){
-        //Make a reference to the firebase storage
-        let storageRef = firebase.storage().ref(`images/${key}`)
-        //Create a promise to push to the promises array later on
-        let promise = storageRef.getDownloadURL().then(url => {
-          //Push to the events array
-          events.push({
-            id: key,
-            createdById: obj[key].createdById,
-            createdByName: obj[key].createdByName,
-            description: obj[key].description,
-            eventType: obj[key].eventType,
-            createdOn: obj[key].createdOn,
-            verify: {
-              uid: obj[key].verify.uid
-            },
-            imgUrl: url
-          })
-        })
-        promises.push(promise)
-      }
-      //Execute all the promises that was stored
-      Promise.all(promises).then(() => {
-        commit('SET_EVENT', events)
-        progress.finish()
-      }).catch(err => {
-        console.log(err)
+      //Iterate through the firebase snapshot
+      snap.forEach(childSnap => {
+        var item = childSnap.val()
+        item.key = childSnap.key
+        //push each item to the array with its key
+        events.push(item)
       })
+
+      commit('SET_EVENT', events)
+      progress.finish()
+    })
+  },
+  ADD_EVENTS: ({getters}, payload) => {
+    const event = {
+      createdById: getters.getUserData.id,
+      createdByName: `${getters.getUserData.firstName} ${getters.getUserData.lastName}`,
+      description: payload.description,
+      eventType: payload.eventType,
+      createdOn: payload.createdOn
+    }
+
+    //Make a nested object to save to the database.
+    event.verify = {}
+    event.verify[getters.getUserData.id] = true
+
+    //Push event to the database
+    firebase.database().ref('/events').push().then(post => {
+      //Get the posted key
+      let postKey = post.key
+      firebase.database().ref(`/users/${getters.getUserData.id}/posts`).child(postKey).set(true).then(() => {
+        let storageRef = firebase.storage().ref(`images/${postKey}`)
+        storageRef.put(payload.img).then(() => {
+          storageRef.getDownloadURL().then(url => {
+            event.imgUrl = url
+            firebase.database().ref(`/events`).child(postKey).set(event)
+          }).catch(err => {
+            toastr.error(err.message)
+          })
+        }).catch(err => {
+          toastr.error(err.message)
+        })
+      }).catch(err => {
+        toastr.error(err.message)
+      })
+    }).catch(err => {
+      toastr.error(err.message)
     })
   }
 }

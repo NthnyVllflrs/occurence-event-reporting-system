@@ -29,7 +29,7 @@
               {{ userFullName }}
             </div>
             -->
-            <router-link class="navbar-item" to="/profile">{{ `${userDetails.firstName} ${userDetails.lastName}` }}</router-link>
+            <router-link class="navbar-item" to="/profile" v-if="userDetails">{{ `${userDetails.firstName} ${userDetails.lastName}` }}</router-link>
             <hr class="navbar-divider">
             <a class="has-text-danger navbar-item" @click="logOutUser">LOG OUT</a>
           </div>

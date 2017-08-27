@@ -1,7 +1,7 @@
 <template>
   <div style="padding-top: 72px">
     <div class="wrapper">
-      <div class="post-box" v-for="event in loadEvents">
+      <div class="post-box" v-for="event in loadEvents" :key="event.key">
         <div class="post-head">
           <img src="https://trackback.net/wp-content/uploads/2015/02/Dummy-profile-picture.png" alt="">
           <div class="post-user">
