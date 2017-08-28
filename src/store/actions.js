@@ -23,7 +23,7 @@ export default {
         //Store 'newUser' to firebase
         firebase.database().ref(`users/${newUser.id}`).set(newUser)
         payload.progress.finish()
-        toastr.success('You are now logged in!')
+        toastr.success('You are now logged in!', {timeout: 1000})
         //Mutate the current state within mutation.js
         commit('SET_USER', newUser)
         //Redirect to /home page
@@ -39,7 +39,7 @@ export default {
     //Firebase function to log in a user
     firebase.auth().signInWithEmailAndPassword(payload.email, payload.password).then(user => {
       payload.progress.finish()
-      toastr.success('You are now logged in!')
+      toastr.success('You are now logged in!', {timeout: 1000})
       //Find the user id from direbase and store it to our vuex store
       firebase.database().ref(`users/${user.uid}`).once('value', snapshot => {
         //Setting the user to our vuex store in mutations.js
@@ -106,6 +106,8 @@ export default {
           storageRef.getDownloadURL().then(url => {
             event.imgUrl = url
             firebase.database().ref(`/events`).child(postKey).set(event)
+            toastr.success('Occurence posted!', {timeout: 1000})
+            router.push('/home')
           }).catch(err => {
             toastr.error(err.message)
           })
@@ -143,6 +145,7 @@ export default {
       } else {
         //If the user is not yet attending then add to firebase
         userRef.child(eventKey).set(true)
+        toastr.success('You are now attending!', {timeout: 1000})
       }
     })
   }

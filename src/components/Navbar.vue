@@ -13,13 +13,13 @@
         <a class="navbar-item" @click="modal.logInModal=true" v-if="!isUserSignedIn">LOGIN</a>
         <a class="has-text-primary navbar-item" @click="modal.signUpModal=true" v-if="!isUserSignedIn">SIGN UP</a>
         <router-link class="navbar-item" to="/home" v-if="isUserSignedIn">
-          <i class="fa fa-home" aria-hidden="true"></i>
+          <i class="icons8-home"></i>
         </router-link>
         <router-link class="navbar-item" to="/home" v-if="isUserSignedIn">
-          <i class="fa fa-map-o" aria-hidden="true"></i>
+          <i class="icons8-gps-device"></i>
         </router-link>
         <router-link class="navbar-item" to="/home/add" v-if="isUserSignedIn">
-          <i class="fa fa-plus" aria-hidden="true"></i>
+          <i class="icons8-plus"></i>
         </router-link>
         <div class="navbar-item has-dropdown" :class="{'is-active': dropDownProfile}" @click="dropDownProfile = !dropDownProfile" v-if="isUserSignedIn">
           <a class="navbar-link"></a>
@@ -67,9 +67,9 @@
           <div class="field">
             <div class="control has-icons-left">
               <input class="input" type="email" placeholder="Email" v-model="signUp.email">
-              <span class="icon is-small is-left">
-                <i class="fa fa-envelope"></i>
-              </span>
+              <!--<span class="icon is-small is-left">-->
+                <!--<i class="fa fa-envelope"></i>-->
+              <!--</span>-->
             </div>
           </div>
 
@@ -78,7 +78,7 @@
             <div class="control has-icons-left">
               <input class="input" type="password" placeholder="Password" v-model="signUp.password">
               <span class="icon is-small is-left">
-                <i class="fa fa-lock"></i>
+                <i class="icons8-lock"></i>
               </span>
             </div>
           </div>
@@ -87,7 +87,7 @@
             <div class="control has-icons-left">
               <input class="input" type="password" placeholder="Re-enter Password" v-model="signUp.password2">
               <span class="icon is-small is-left">
-                <i class="fa fa-refresh"></i>
+                <i class="icons8-key"></i>
               </span>
             </div>
           </div>
@@ -111,9 +111,9 @@
           <div class="field">
             <div class="control has-icons-left">
               <input class="input" type="email" placeholder="Email" v-model="logIn.email">
-              <span class="icon is-small is-left">
-            <i class="fa fa-envelope"></i>
-          </span>
+              <!--<span class="icon is-small is-left">-->
+                <!--<i class="fa fa-envelope"></i>-->
+              <!--</span>-->
             </div>
           </div>
           <!--Div for password input field-->
@@ -121,7 +121,7 @@
             <div class="control has-icons-left">
               <input class="input" type="password" placeholder="Password" v-model="logIn.password">
               <span class="icon is-small is-left">
-            <i class="fa fa-lock"></i>
+            <i class="icons8-lock"></i>
           </span>
             </div>
           </div>

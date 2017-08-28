@@ -16,32 +16,32 @@
           <div class="details">
             <div class="field">
               <div class="is-success is-small">
-                <span class="icon is-small">
-                  <i class="fa fa-info"></i>
-                </span>&nbsp;
+                <span class="icon">
+                  <i class="icons8-info"></i>
+                </span>
                 <span>{{ event.description }}</span>
               </div>
               <div class="is-success is-small">
-                <span class="icon is-small">
-                  <i class="fa fa-map-marker"></i>
-                </span>&nbsp;
+                <span class="icon">
+                  <i class="icons8-adventures"></i>
+                </span>
                 <span>Mercedes</span>
               </div>
               <div class="is-success is-small">
-                <span class="icon is-small">
-                  <i class="fa fa-th-list"></i>
-                </span>&nbsp;
+                <span class="icon">
+                  <i class="icons8-bookmark"></i>
+                </span>
                 <span>{{ event.eventType }}</span>
               </div>
             </div>
             <hr>
             <div class="control">
               <span class="icon" @click="verifyPost(event.key)">
-                <i class="fa fa-check " :class="{'btn-is-active': event.verify && event.verify.hasOwnProperty(`${ getUserId }`)}"></i>&nbsp;
+                <i class="icons8-checkmark ops" :class="{'btn-is-active': event.verify && event.verify.hasOwnProperty(`${ getUserId }`)}"></i>&nbsp;
                 <span>{{ (typeof event.verify !== 'undefined' && Object.keys(event.verify).length > 0) ? Object.keys(event.verify).length : 0 }}</span>
               </span>
               <span class="icon" @click="attendEvent(event.key)">
-                <i class="fa fa-calendar-check-o" :class="{'btn-is-active': getUserEvents && getUserEvents.hasOwnProperty(`${event.key}`)}"></i>
+                <i class="icons8-group ops" :class="{'btn-is-active': getUserEvents && getUserEvents.hasOwnProperty(`${event.key}`)}"></i>
               </span>
             </div>
           </div>

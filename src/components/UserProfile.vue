@@ -13,7 +13,7 @@
             <p>
               <span class="title is-bold">Joshua Angelo Bienes</span>
               <span class="button is-primary is-inverted is-small" @click="editProfileModal = true">
-                <span class="icon is-small"><i class="fa fa-edit"></i></span>
+                <span class="icon is-small"><i class="icons8-create-new"></i></span>
               </span>
             </p>
             <p class="">eyedeceiver03@gmail.com</p>
@@ -46,9 +46,9 @@
       <div class="profile-options">
         <div class="tabs is-fullwidth">
           <ul>
-            <li class="link is-active"><a><span class="icon"><i class="fa fa-user"></i></span> <span>My Post</span></a></li>
-            <li class="link"><a><span class="icon"><i class="fa fa-check"></i></span> <span>Verified Posts</span></a></li>
-            <li class="link"><a><span class="icon"><i class="fa fa-bookmark"></i></span> <span>My Bookmarks</span></a></li>
+            <li class="link is-active"><a><span class="icon"><i class="icons8-gender-neutral-user"></i></span> <span>My Post</span></a></li>
+            <li class="link"><a><span class="icon"><i class="icons8-checkmark"></i></span> <span>Verified Posts</span></a></li>
+            <li class="link"><a><span class="icon"><i class="icons8-group"></i></span> <span>Attending</span></a></li>
           </ul>
         </div>
       </div>
