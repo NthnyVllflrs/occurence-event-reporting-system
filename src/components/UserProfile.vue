@@ -158,9 +158,6 @@
         //Count number of posted events to render inside UserProfile.vue
         //Logic is a little complicated though, but it works
         return (typeof this.$store.getters.getUserData.posts !== 'undefined' && Object.keys(this.$store.getters.getUserData.posts).length > 0) ? Object.keys(this.$store.getters.getUserData.posts).length : 0
-      },
-      verifyButtonColorChange(){
-
       }
     }
   }

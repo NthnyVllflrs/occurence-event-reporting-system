@@ -132,5 +132,18 @@ export default {
         eventVerifyRef.child(getters.getUserData.id).set(true)
       }
     })
+  },
+  ATTEND_EVENT: ({getters}, {eventKey}) => {
+    //Create the reference
+    let userRef = firebase.database().ref(`users/${getters.getUserData.id}/attend`)
+    userRef.once('value', snap => {
+      if(snap.hasChild(eventKey)){
+        //If the user already attended the event delete it
+        userRef.child(eventKey).remove()
+      } else {
+        //If the user is not yet attending then add to firebase
+        userRef.child(eventKey).set(true)
+      }
+    })
   }
 }

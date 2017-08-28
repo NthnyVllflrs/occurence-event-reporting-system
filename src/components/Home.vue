@@ -40,8 +40,8 @@
                 <i class="fa fa-check " :class="{'btn-is-active': event.verify && event.verify.hasOwnProperty(`${ getUserId }`)}"></i>&nbsp;
                 <span>{{ (typeof event.verify !== 'undefined' && Object.keys(event.verify).length > 0) ? Object.keys(event.verify).length : 0 }}</span>
               </span>
-              <span class="icon">
-                <i class="fa fa-calendar-check-o"></i>
+              <span class="icon" @click="attendEvent(event.key)">
+                <i class="fa fa-calendar-check-o" :class="{'btn-is-active': getUserEvents && getUserEvents.hasOwnProperty(`${event.key}`)}"></i>
               </span>
             </div>
           </div>
@@ -62,6 +62,9 @@
       verifyPost(eventKey){
         //Verify event passing the event key
         this.$store.dispatch('VERIFY_EVENT', {eventKey})
+      },
+      attendEvent(eventKey){
+        this.$store.dispatch('ATTEND_EVENT', {eventKey})
       }
     },
     computed: {
@@ -71,6 +74,9 @@
       },
       getUserId(){
         return this.$store.getters.getUserData.id
+      },
+      getUserEvents(){
+        return this.$store.getters.getUserData.attend
       }
     },
     created(){
