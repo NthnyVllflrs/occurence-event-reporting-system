@@ -7,5 +7,11 @@ export default {
   },
   AUTH_CHANGE: (state, payload) => {
     state.isSignedIn = payload
+  },
+  SET_USER_POST: (state, payload) => {
+    state.userPosts = payload
+  },
+  SET_ATTENDED_EVENTS: (state, payload) => {
+    state.attendEvents = payload
   }
 }

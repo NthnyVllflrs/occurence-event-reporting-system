@@ -9,5 +9,13 @@ export default {
   },
   checkIfSignedIn: (state) => {
     return state.isSignedIn
+  },
+
+  //For UserProfile.vue
+  getUserPosts: (state) => {
+    return state.userPosts
+  },
+  getAttendEvents: (state) => {
+    return state.attendEvents
   }
 }

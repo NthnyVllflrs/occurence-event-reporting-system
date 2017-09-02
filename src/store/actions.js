@@ -58,6 +58,9 @@ export default {
     firebase.auth().signOut().then(() => {
       //When the user is logged out, user state is emptied.
       commit('SET_USER', null)
+      commit('SET_EVENT', [])
+      commit('SET_USER_POST', [])
+      commit('SET_ATTENDED_EVENTS', [])
       progress.finish()
       router.push('/')
     })
@@ -67,6 +70,7 @@ export default {
       commit('SET_USER', snapshot.val())
     })
   },
+  //User's timeline
   LOAD_EVENTS: ({commit}, {progress}) => {
     progress.start()
     firebase.database().ref('events').on('value', snap => {
@@ -81,6 +85,36 @@ export default {
 
       commit('SET_EVENT', events)
       progress.finish()
+    })
+  },
+  //Collective posts by the user.
+  LOAD_USER_POST: ({getters, commit}) => {
+    firebase.database().ref('events').on('value', snap => {
+      let events = []
+      snap.forEach(childSnap => {
+        var item = childSnap.val()
+        //If the post is created by user, push to the array
+        if(item.createdById === getters.getUserData.id){
+          events.push(item)
+        }
+      })
+      commit('SET_USER_POST', events)
+    })
+  },
+  LOAD_ATTEND_EVENTS: ({getters, commit}) => {
+    let eventKey = Object.keys(getters.getUserData.attend)
+    //Collection of event keys for firebase to fire
+    let promises = eventKey.map(key => {
+      return firebase.database().ref(`events`).child(key).once('value').then(snap => snap.val())
+    })
+    //Fire the collection at once
+    Promise.all(promises).then(snapshot => {
+      //Returns the attended events
+      let sortedArr = snapshot.sort((eventA, eventB) => {
+        //Sort the events by date
+        return eventA.createdOn < eventB.createdOn
+      })
+      commit('SET_ATTENDED_EVENTS', sortedArr)
     })
   },
   ADD_EVENTS: ({getters}, payload) => {
@@ -127,11 +161,17 @@ export default {
     eventVerifyRef.once('value', snap => {
       if(snap.hasChild(getters.getUserData.id)){
         //If the user verified this post then delete
-        eventVerifyRef.child(getters.getUserData.id).remove()
+        eventVerifyRef.child(getters.getUserData.id).remove().then(() => {
+          //Also delete to the users node
+          firebase.database().ref(`users/${getters.getUserData.id}/verify`).child(eventKey).remove()
+        })
       } else {
         //If the user not yet verified this post
         //Add user id to verify node inside firebase and the counter will update in real time
-        eventVerifyRef.child(getters.getUserData.id).set(true)
+        eventVerifyRef.child(getters.getUserData.id).set(true).then(() => {
+          //Also add to the users node
+          firebase.database().ref(`users/${getters.getUserData.id}/verify`).child(eventKey).set(true)
+        })
       }
     })
   },

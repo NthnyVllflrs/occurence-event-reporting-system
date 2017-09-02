@@ -15,19 +15,19 @@
       <div class="columns">
         <div class="column is-one-third">
         <span class="icon is-large">
-          <i class="fa fa-location-arrow"></i>
+          <i class="icons8-adventures"></i>
         </span>
           <p class="is-size-6 has-text-centered">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi laboriosam placeat voluptatem! Deleniti eaque eos et excepturi nemo, saepe sint voluptatibus! Asperiores doloribus dolorum fugit?</p>
         </div>
         <div class="column">
         <span class="icon is-large">
-          <i class="fa fa-phone"></i>
+          <i class="icons8-iphone"></i>
         </span>
           <p class="is-size-6 has-text-centered">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem deleniti earum eius esse, harum impedit neque nesciunt porro possimus quaerat quo ratione recusandae tempore ut!</p>
         </div>
         <div class="column">
         <span class="icon is-large">
-          <i class="fa fa-rss"></i>
+          <i class="icons8-group"></i>
         </span>
           <p class="is-size-6 has-text-centered">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto cumque et eveniet explicabo facilis non nostrum ratione, reiciendis, rem suscipit tempore velit veritatis vitae. Necessitatibus.</p>
         </div>
@@ -70,7 +70,8 @@
     margin-bottom: 10px;
   }
 
-  .column .icon .fa{
+  .column .icon i{
     color: #00d1b2;
+    font-size: 36px;
   }
 </style>

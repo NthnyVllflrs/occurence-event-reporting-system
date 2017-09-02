@@ -14,6 +14,8 @@ export const store = new Vuex.Store({
   state: {
     user: null,
     events: [],
+    userPosts: [],
+    attendEvents: [],
     isSignedIn: false
   },
   actions,
