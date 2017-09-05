@@ -6,29 +6,14 @@
           <div class="columns is-vcentered">
             <div class="column is-4 is-offset-4">
               <h1 class="title">
-                Add an Occurrence
+                Edit an Occurrence
               </h1>
 
               <div class="box">
-                <div class="field">
-                  <div class="file is-small has-name is-fullwidth">
-                    <label class="file-label">
-                      <input class="file-input" type="file" id="file" accept=".jpg, .jpeg, .png" @change="getFileName">
-                      <span class="file-cta">
-                        <span class="file-label">
-                          Choose Image
-                        </span>
-                      </span>
-                      <span class="file-name">
-                        {{ fileName }}
-                      </span>
-                    </label>
-                  </div>
-                </div>
-
+                <img v-if="getEditEventData" :src="getEditEventData.imgUrl" alt="">
                 <div class="field">
                   <p class="control has-icons-left">
-                    <input class="input" type="text" placeholder="Description" v-model="eventDescription">
+                    <input class="input" type="text" placeholder="Description" v-model="eventDescription = getEditEventData.description">
                     <span class="icon is-small is-left">
                       <i class="fa fa-info"></i>
                     </span>
@@ -53,7 +38,7 @@
 
                 <div class="field">
                   <div class="select">
-                    <select v-model="selectedEventType">
+                    <select v-model="selectedEventType = getEditEventData.eventType">
                       <option v-for="option in eventTypeOptions" :value="option.text">
                         {{option.text}}
                       </option>
@@ -65,8 +50,8 @@
                   <div class="level-left"></div>
                   <div class="level-right">
                     <p class="level-item">
-                      <a class="button is-primary" @click="submitEvent">
-                        <span>Post</span>
+                      <a class="button is-primary" @click="updateEvent">
+                        <span>Update</span>
                       </a>
                     </p>
                   </div>
@@ -77,37 +62,34 @@
         </div>
       </div>
       <!--Google maps-->
-    <!--<div class="modal" :class="{'is-active': toggleMaps}">-->
+      <!--<div class="modal" :class="{'is-active': toggleMaps}">-->
       <!--<div class="modal-background"></div>-->
       <!--<div class="modal-content">-->
-        <!--<gmap-autocomplete class="input" @place_changed="setPlace"></gmap-autocomplete>-->
-        <!--<Gmap-map-->
-          <!--:center="center"-->
-          <!--:zoom="10"-->
-          <!--map-type-id="terrain"-->
-          <!--style="width: 100%; height: 500px;"-->
-        <!--&gt;-->
-          <!--<gmap-marker-->
-            <!--:position="center"-->
-            <!--:clickable="true"-->
-          <!--&gt;-->
-            <!--&lt;!&ndash;Will change later, draggable with coords&ndash;&gt;-->
-          <!--</gmap-marker>-->
-        <!--</Gmap-map>-->
+      <!--<gmap-autocomplete class="input" @place_changed="setPlace"></gmap-autocomplete>-->
+      <!--<Gmap-map-->
+      <!--:center="center"-->
+      <!--:zoom="10"-->
+      <!--map-type-id="terrain"-->
+      <!--style="width: 100%; height: 500px;"-->
+      <!--&gt;-->
+      <!--<gmap-marker-->
+      <!--:position="center"-->
+      <!--:clickable="true"-->
+      <!--&gt;-->
+      <!--&lt;!&ndash;Will change later, draggable with coords&ndash;&gt;-->
+      <!--</gmap-marker>-->
+      <!--</Gmap-map>-->
       <!--</div>-->
       <!--<button class="modal-close is-large" aria-label="close" @click="toggleMaps = false"></button>-->
-    <!--</div>-->
+      <!--</div>-->
     </section>
   </div>
 </template>
 
 <script>
-//  import axios from 'axios'
-  import toastr from 'toastr'
   export default {
     data(){
       return {
-        fileName: '',
         eventDescription: '',
         selectedEventType: 'Convention',
         eventTypeOptions: [
@@ -124,40 +106,37 @@
     methods: {
       getFileName(){
         let file = document.getElementById('file')
+        console.log(file.files[0])
         //To display the file name
         this.fileName = file.files[0].name
       },
-      submitEvent(){
-        let file = document.getElementById('file')
+      updateEvent(){
         let description = this.eventDescription
         let eventType = this.selectedEventType
-        //If all the fields are filled up.
-        if(file.files && description && eventType){
-          //Call ADD_EVENTS action from actions.js with payload
-          this.$store.dispatch('ADD_EVENTS', {
-            img: file.files[0],
-            createdOn: new Date().toISOString(),
+        if(description && eventType){
+          this.$store.dispatch('UPDATE_POST', {
+            eventKey: this.$route.params.id,
             description,
             eventType
           })
-        } else {
-          toastr.error('Please fill up all the fields.')
         }
-        //Clear all the fields after clicking submit
-        this.clearAddFields()
-      },
-      clearAddFields(){
-        this.fileName = ''
-        this.eventDescription = ''
       }
+    },
+    computed: {
+      getEditEventData(){
+        //Getting the event data
+        return this.$store.getters.getEditEventData
+      }
+    },
+    created(){
+      //Get the current event to edit
+      this.$store.dispatch('GET_EDIT_POST_DATA', {
+        eventKey: this.$route.params.id
+      })
+    },
+    beforeDestroy(){
+      //When leaving this page delete the current event data
+      this.$store.commit('DELETE_CURRENT_EDIT_EVENT_DATA')
     }
-//    mounted(){
-//      axios.get('http://ip-api.com/json').then(res => {
-//        let geolocation = {}
-//        geolocation.lat = res.data.lat
-//        geolocation.lng = res.data.lon
-//        this.center = geolocation
-//      })
-//    }
   }
 </script>

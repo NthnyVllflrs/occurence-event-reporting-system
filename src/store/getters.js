@@ -17,5 +17,8 @@ export default {
   },
   getAttendEvents: (state) => {
     return state.attendEvents
+  },
+  getEditEventData: (state) => {
+    return state.editEventData
   }
 }

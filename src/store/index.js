@@ -16,6 +16,7 @@ export const store = new Vuex.Store({
     events: [],
     userPosts: [],
     attendEvents: [],
+    editEventData: null,
     isSignedIn: false
   },
   actions,

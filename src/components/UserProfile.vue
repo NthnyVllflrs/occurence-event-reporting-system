@@ -11,12 +11,12 @@
           </div>
           <div class="column is-5">
             <p>
-              <span class="title is-bold">Joshua Angelo Bienes</span>
+              <span class="title is-bold">{{ `${this.$store.getters.getUserData.firstName} ${this.$store.getters.getUserData.lastName}` }}</span>
               <span class="button is-primary is-inverted is-small" @click="editProfileModal = true">
                 <span class="icon is-small"><i class="icons8-create-new"></i></span>
               </span>
             </p>
-            <p class="">eyedeceiver03@gmail.com</p>
+            <p class="">{{ this.$store.getters.getUserData.email }}</p>
           </div>
           <div class="column is-6">
             <div class="level is-mobile">
@@ -63,15 +63,17 @@
       </div>
 
       <br />
+
       <!--My Posts-->
       <div class="wrapper" v-if="myPost">
         <div class="post-box" v-for="event in loadUserPosts" :key="event.key">
-          <div class="post-head">
+          <div class="post-head upper-box">
             <img src="https://trackback.net/wp-content/uploads/2015/02/Dummy-profile-picture.png" alt="">
             <div class="post-user">
-              <p class="is-size-4 has-text-primary">{{ event.createdByName }}</p>
+              <p class="is-size-4 has-text-primary is-size-6-mobile">{{ event.createdByName }}</p>
               <p class="is-size-7">{{ event.createdOn | date }}</p>
             </div>
+            <a class="delete" @click="deletePostModal=true"></a>
           </div>
           <div class="post-body">
             <img :src="event.imgUrl" alt="">
@@ -98,6 +100,26 @@
                   <span>{{ event.eventType }}</span>
                 </div>
               </div>
+              <hr>
+              <div class="control">
+                <a class="button is-primary is-outlined" @click="editPost(event.key)"><i class="icons8-pencil"></i><span>Edit</span></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal" :class="{'is-active': deletePostModal}">
+            <div class="modal-background"></div>
+            <div class="modal-card card-wrapper">
+              <header class="modal-card-head">
+                <p class="modal-card-title">Deleting Post...</p>
+              </header>
+              <section class="modal-card-body">
+                <p class="is-size-6">Are you sure? You won't find it anywhere anymore.</p>
+              </section>
+              <footer class="modal-card-foot" style="justify-content:flex-end;">
+                <a class="button" @click="deletePostModal=false">Cancel</a>
+                <a class="button is-danger" @click="deletePost(event.key)">Delete</a>
+              </footer>
             </div>
           </div>
         </div>
@@ -202,6 +224,7 @@
     data(){
       return {
         editProfileModal: false,
+        deletePostModal: false,
         myPost: true,
         attending: false
       }
@@ -215,6 +238,12 @@
       attendingIsActive(){
         this.myPost = false
         this.attending = true
+      },
+      editPost(eventKey){
+        this.$router.push(`/edit/${eventKey}`)
+      },
+      deletePost(eventKey){
+        this.$store.dispatch('DELETE_POST', {eventKey})
       }
     },
     computed: {
@@ -247,4 +276,18 @@
 <style scoped>
   @import "../assets/css/timeline.css";
   @import "../assets/css/profile.css";
+
+  .wrapper .post-box .post-head.upper-box{
+    display: flex;
+  }
+  .wrapper .post-box .post-head.upper-box .post-user{
+    flex: 1;
+  }
+  .wrapper .post-box .post-head.upper-box a.delete{
+    flex: 4;
+  }
+
+  .control a.button:hover i{
+    color: white;
+  }
 </style>

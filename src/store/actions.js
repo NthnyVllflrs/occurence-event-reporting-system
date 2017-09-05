@@ -91,13 +91,14 @@ export default {
   LOAD_USER_POST: ({getters, commit}) => {
     firebase.database().ref('events').on('value', snap => {
       let events = []
-      snap.forEach(childSnap => {
-        var item = childSnap.val()
-        //If the post is created by user, push to the array
-        if(item.createdById === getters.getUserData.id){
+      let snapshot = snap.val()
+      for(let key in snapshot){
+        let item = snapshot[key]
+        if(snapshot[key].createdById === getters.getUserData.id){
+          item.key = key
           events.push(item)
         }
-      })
+      }
       commit('SET_USER_POST', events)
     })
   },
@@ -187,6 +188,36 @@ export default {
         userRef.child(eventKey).set(true)
         toastr.success('You are now attending!', {timeout: 1000})
       }
+    })
+  },
+  UPDATE_POST: ({getters}, {eventKey, description, eventType}) => {
+    //Update an event
+    firebase.database().ref(`events/${eventKey}`).update({
+      description: description,
+      eventType: eventType
+    }).then(() => {
+      toastr.success('Successfully updated!')
+      router.push('/profile')
+    }).catch(err => {
+      toastr.error('Seems like there\'s an error')
+    })
+  },
+  DELETE_POST: ({getters}, {eventKey}) => {
+    //Delete a post to both database and storage
+    firebase.database().ref(`events/${eventKey}`).remove().then(() => {
+      firebase.database().ref(`users/${getters.getUserData.id}/posts`).child(eventKey).remove().then(() => {
+        firebase.storage().ref(`images/${eventKey}`).delete().then(() => {
+          toastr.success('Post deleted successfully!')
+        })
+      })
+    }).catch(err => {
+      toastr.error('Seems like there\'s an error.')
+    })
+  },
+  //Current edit post data
+  GET_EDIT_POST_DATA: ({commit}, {eventKey}) => {
+    firebase.database().ref(`events/${eventKey}`).once('value').then(snap => {
+      commit('SET_CURRENT_EDIT_EVENT_DATA', snap.val())
     })
   }
 }
