@@ -12,14 +12,17 @@
       <div class="navbar-end navbar-menu" :class="{'is-active': navBarToggle}">
         <a class="navbar-item" @click="modal.logInModal=true" v-if="!isUserSignedIn">LOGIN</a>
         <a class="has-text-primary navbar-item" @click="modal.signUpModal=true" v-if="!isUserSignedIn">SIGN UP</a>
-        <router-link class="navbar-item" to="/home" v-if="isUserSignedIn">
-          <i class="icons8-home"></i>
+        <router-link class="navbar-item tooltip" to="/home" v-if="isUserSignedIn">
+            <i class="icons8-home"></i>
+            <span class="tooltip-text">Home</span>
         </router-link>
-        <router-link class="navbar-item" to="/home" v-if="isUserSignedIn">
+        <router-link class="navbar-item tooltip" to="/home" v-if="isUserSignedIn">
           <i class="icons8-gps-device"></i>
+          <span class="tooltip-text">Map</span>
         </router-link>
-        <router-link class="navbar-item" to="/home/add" v-if="isUserSignedIn">
+        <router-link class="navbar-item tooltip" to="/home/add" v-if="isUserSignedIn">
           <i class="icons8-plus"></i>
+          <span class="tooltip-text">Add</span>
         </router-link>
         <div class="navbar-item has-dropdown" :class="{'is-active': dropDownProfile}" @click="dropDownProfile = !dropDownProfile" v-if="isUserSignedIn">
           <a class="navbar-link"></a>
@@ -227,6 +230,8 @@
 </script>
 
 <style>
+  @import "../assets/css/tooltip.css";
+
   .navbar-menu a.navbar-item i{
     color: #00d1b2;
   }

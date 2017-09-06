@@ -15,33 +15,44 @@
         <div class="post-foot">
           <div class="details">
             <div class="field">
+
               <div class="is-success is-small">
-                <span class="icon">
+                <span class="icon tooltip">
                   <i class="icons8-info"></i>
+                  <span class="tooltip-text">Description</span>
                 </span>
                 <span>{{ event.description }}</span>
               </div>
+              
               <div class="is-success is-small">
-                <span class="icon">
+                <span class="icon tooltip">
                   <i class="icons8-adventures"></i>
+                  <span class="tooltip-text">Location</span>
                 </span>
                 <span>Mercedes</span>
               </div>
+
               <div class="is-success is-small">
-                <span class="icon">
+                <span class="icon tooltip">
                   <i class="icons8-bookmark"></i>
+                  <span class="tooltip-text">Type</span>
                 </span>
                 <span>{{ event.eventType }}</span>
               </div>
             </div>
+
             <hr>
+
             <div class="control">
-              <span class="icon" @click="verifyPost(event.key)">
+              <span class="icon tooltip" @click="verifyPost(event.key)">
                 <i class="icons8-checkmark ops" :class="{'btn-is-active': event.verify && event.verify.hasOwnProperty(`${ getUserId }`)}"></i>&nbsp;
                 <span>{{ (typeof event.verify !== 'undefined' && Object.keys(event.verify).length > 0) ? Object.keys(event.verify).length : 0 }}</span>
+                <span class="tooltip-text">Verify</span>
               </span>
-              <span class="icon" @click="attendEvent(event.key)">
+              
+              <span class="icon tooltip" @click="attendEvent(event.key)">
                 <i class="icons8-group ops" :class="{'btn-is-active': getUserEvents && getUserEvents.hasOwnProperty(`${event.key}`)}"></i>
+                <span class="tooltip-text">Attend</span>
               </span>
             </div>
           </div>
@@ -89,4 +100,5 @@
 
 <style scoped>
 @import "../assets/css/timeline.css";
+@import "../assets/css/tooltip.css";
 </style>
