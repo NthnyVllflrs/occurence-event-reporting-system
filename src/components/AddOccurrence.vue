@@ -37,12 +37,12 @@
 
                 <div class="field has-addons">
                   <p class="control has-icons-left">
-                    <input class="input" type="text" placeholder="Location" disabled>
+                    <input class="input" type="text" placeholder="Location">
                     <span class="icon is-small is-left">
                       <i class="fa fa-map-marker"></i>
                     </span>
                   </p>
-                  <p class="control">
+                  <p class="control" @click="toggleMaps=true">
                     <button class="button is-primary is-inverted">
                       <span class="icon is-left">
                         <i class="fa fa-globe"></i>
@@ -97,6 +97,28 @@
       <!--</div>-->
       <!--<button class="modal-close is-large" aria-label="close" @click="toggleMaps = false"></button>-->
     <!--</div>-->
+
+    <div class="modal" :class="{'is-active': toggleMaps}">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <gmap-map
+          :center="center"
+          :zoom="13"
+          style="width: 500px; height: 300px"
+        >
+          <gmap-marker
+            :key="index"
+            v-for="(m, index) in markers"
+            :position="m.position"
+            :clickable="true"
+            :draggable="true"
+            @click="center=m.position"
+          ></gmap-marker>
+        </gmap-map>
+      </div>
+      <button class="modal-close is-large" aria-label="close" @click="toggleMaps=false"></button>
+    </div>
+
     </section>
   </div>
 </template>
@@ -107,6 +129,12 @@
   export default {
     data(){
       return {
+        center: {lat: 6.9093, lng: 122.088},
+        markers: [
+          {position: {lat: 6.9100, lng: 122.1047}},
+          {position: {lat: 6.9093, lng: 122.088}},
+        ],
+        toggleMaps: false,
         fileName: '',
         eventDescription: '',
         selectedEventType: 'Convention',

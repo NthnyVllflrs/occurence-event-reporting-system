@@ -16,7 +16,7 @@
             <i class="icons8-home"></i>
             <span class="tooltip-text">Home</span>
         </router-link>
-        <router-link class="navbar-item tooltip" to="/home" v-if="isUserSignedIn">
+        <router-link class="navbar-item tooltip" to="/occurrence-map" v-if="isUserSignedIn">
           <i class="icons8-gps-device"></i>
           <span class="tooltip-text">Map</span>
         </router-link>
